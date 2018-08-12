@@ -14,6 +14,11 @@ const router = new Router({
       path: "/blog/:page",
       name: "blog",
       component: () => import("@/views/Blog")
+    },
+    {
+      path: "/passage/:id",
+      name: "passage",
+      component: () => import("@/views/Passage")
     }
   ],
   scrollBehavior(to, from, savedPosition) {

@@ -1,35 +1,30 @@
 <template>
   <div>
-    <div class="post" v-for="(psg, index) in passages" :key="index">
+    <div class="post">
       <h3 class="article-title">
-        <router-link :to = "'/passage/' + psg.id">
-          <span>{{ psg.title }}</span>
-        </router-link>
+        <span>{{ psg.title }}</span>
       </h3>
       <div class="article-top-meta">
         <span>
-          <a href="javascript:void(0);">{{ psg.createTime.substr(0,10) }}</a>
+          发布 : <a href="javascript:void(0);">{{ psg.createTime.substr(0,10) }}</a>
+        </span>
+        <span>
+          分类 : <a href="javascript:void(0);">{{psg.category}}</a>
+        </span>
+        <span>
+          浏览 : {{psg.scanTimes + 1}}
         </span>
       </div>
       <div class="article-content">
-        <div class="markdown-body" v-html="mdToHtml(psg.summary)"></div>
+        <div class="markdown-body" v-html="mdToHtml(psg.content)"></div>
       </div>
       <div class="article-footer">
         <div class="article-meta pull-left">
-          <span>
-            <i class="iconfont icon-tag"></i>分类:
-            <router-link :to="{path: '/blog', query: {catergory: psg.category}}">
-              {{psg.category}}
-            </router-link>
-          </span>
           <span>
             <i class="iconfont icon-06tags"></i> 标签: #{{psg.category}}
           </span>
         </div>
         <div class="article-meta pull-right">
-          <span>
-            <i class="iconfont icon-view"></i>浏览: {{psg.scanTimes}}
-          </span>
         </div>
       </div>
     </div>
@@ -46,18 +41,14 @@ const mdAPI = new Markdown();
 
 export default {
   props: {
-    page: {
-      type: Number,
-      default: 0
-    },
-    limit: {
-      type: Number,
-      default: 5
+    id: {
+      type: String,
+      required: true
     }
   },
   data() {
     return {
-      passages: []
+      psg: {}
     };
   },
   mounted() {
@@ -74,12 +65,18 @@ export default {
       return mdAPI.format(md);
     },
     fetchPassages() {
-      if (this.page <= 0) return;
-      this.passages = [];
-      psgAPI.fetch(this.page, this.limit, true).then(res => {
-        this.passages = res;
+      this.psg = {};
+      psgAPI.search(this.id).then(res => {
+        this.psg = res;
       });
     }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.article-top-meta span {
+  color: #9e9e9e;
+  font-style: italic;
+}
+</style>
