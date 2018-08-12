@@ -63,8 +63,7 @@ a:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-::-webkit-scrollbar-thumb,
-::-webkit-scrollbar-track {
-  border-right: 1px solid transparent;
-  border-left: 1px solid transparent;
+::-webkit-scrollbar-thumb:hover {
+  transition: all 0.15s;
+  background-color: rgba(0, 0, 0, 0.4);
 }
