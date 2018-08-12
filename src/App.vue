@@ -8,6 +8,8 @@
 
 <script>
 import "@/assets/css/base.scss";
+import "@/assets/icon/iconfont.css";
+
 import BodyFooter from "@/components/body/BodyFooter.vue";
 import BodyHeader from "@/components/body/BodyHeader.vue";
 export default {

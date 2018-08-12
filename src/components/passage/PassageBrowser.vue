@@ -14,8 +14,23 @@
       <div class="article-content">
         <div class="markdown-body" v-html="mdToHtml(psg.summary)"></div>
       </div>
-      <div>
-        <div class="article-meta"></div>
+      <div class="article-footer">
+        <div class="article-meta pull-left">
+          <span>
+            <i class="iconfont icon-tag"></i>分类:
+            <router-link :to="{path: '/blog', query: {catergory: psg.category}}">
+              {{psg.category}}
+            </router-link>
+          </span>
+          <span>
+            <i class="iconfont icon-06tags"></i> 标签: #{{psg.category}}
+          </span>
+        </div>
+        <div class="article-meta pull-right">
+          <span>
+            <i class="iconfont icon-view"></i>浏览: {{psg.scanTimes}}
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -148,6 +163,46 @@ export default {
   color: #424242;
   .markdown-body {
     margin: 0 auto;
+  }
+}
+
+.article-footer {
+  .article-meta {
+    font-size: 1.3rem;
+    color: #9e9e9e;
+
+    span {
+      display: inline-block;
+    }
+    span:not(:last-child) {
+      margin-right: 3rem;
+    }
+
+    i {
+      vertical-align: middle;
+      color: #757575;
+      margin-right: 0.5rem;
+    }
+
+    a {
+      transition: 0.15s;
+      color: #9e9e9e;
+    }
+    a:hover {
+      color: #f03838;
+    }
+  }
+  .pull-left {
+    float: left;
+  }
+  .pull-right {
+    float: right;
+  }
+
+  &::after {
+    content: " ";
+    display: block;
+    clear: both;
   }
 }
 </style>
