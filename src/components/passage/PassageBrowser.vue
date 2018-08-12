@@ -31,7 +31,7 @@ export default {
   props: {
     page: {
       type: Number,
-      default: 1
+      default: 0
     },
     limit: {
       type: Number,
@@ -44,13 +44,24 @@ export default {
     };
   },
   mounted() {
-    psgAPI.fetch(this.page, this.limit, true).then(res => {
-      this.passages = res;
-    });
+    this.fetchPassages();
+  },
+  watch: {
+    page(to, from) {
+      if (to === from) return;
+      this.fetchPassages();
+    }
   },
   methods: {
     mdToHtml(md) {
       return mdAPI.format(md);
+    },
+    fetchPassages() {
+      if (this.page <= 0) return;
+      this.passages = [];
+      psgAPI.fetch(this.page, this.limit, true).then(res => {
+        this.passages = res;
+      });
     }
   }
 };
@@ -136,7 +147,6 @@ export default {
   font-size: 1.6rem;
   color: #424242;
   .markdown-body {
-    width: 750px;
     margin: 0 auto;
   }
 }

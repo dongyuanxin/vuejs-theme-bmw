@@ -7,6 +7,11 @@ const router = new Router({
   routes: [
     {
       path: "/",
+      name: "home",
+      component: () => import("@/views/Home")
+    },
+    {
+      path: "/blog/:page",
       name: "blog",
       component: () => import("@/views/Blog")
     }

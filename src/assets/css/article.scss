@@ -1,0 +1,24 @@
+.page-navigation {
+  position: relative;
+  margin: 30px 0;
+  display: flex;
+  justify-content: space-around;
+
+  a {
+    color: #f03838;
+    font-size: 1.6rem;
+    border: 1px solid #e0e0e0;
+    line-height: 30px;
+    height: 32px;
+    padding: 0 20px;
+    border-radius: 16px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+  }
+
+  a:hover {
+    color: #fff;
+    background-color: #f03838;
+    border-color: #f03838;
+  }
+}
