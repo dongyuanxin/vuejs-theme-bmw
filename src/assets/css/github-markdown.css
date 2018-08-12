@@ -210,12 +210,12 @@
 }
 
 .markdown-body a {
-  color: #0366d6;
+  color: #f03838;
   text-decoration: none;
 }
 
 .markdown-body a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .markdown-body strong {
@@ -609,8 +609,11 @@
   padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
-  background-color: rgba(27, 31, 35, 0.05);
+  /* background-color: rgba(27, 31, 35, 0.05); */
   border-radius: 3px;
+  /* color: #c7254e; */
+  background-color: #f8f8f8;
+  color: #c7254e;
 }
 
 .markdown-body pre {
