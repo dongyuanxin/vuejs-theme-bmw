@@ -2,8 +2,8 @@
   <div class="container">
     <passage-viewer :id="id"></passage-viewer>
     <nav class="page-navigation">
-      <router-link :to="'/blog/' + (id - 1)" v-if="showPrevButton">上一篇</router-link>
-      <router-link :to="'/blog/' + (id + 1)" v-if="showNextButton">下一篇</router-link>
+      <router-link :to="'/passage/' + prevId" v-if="showPrevButton">上一篇</router-link>
+      <router-link :to="'/passage/' + nextId" v-if="showNextButton">下一篇</router-link>
     </nav>
   </div>
 </template>
@@ -20,8 +20,10 @@ export default {
   data() {
     return {
       id: 0,
-      showPrevButton: true,
-      showNextButton: true
+      showPrevButton: false,
+      showNextButton: false,
+      prevId: 1,
+      nextId: 1
     };
   },
   beforeMount() {
@@ -39,17 +41,20 @@ export default {
   },
   methods: {
     async handleButton() {
-      // this.total = await psgAPI.calculate();
-      // if (this.total > this.page * this.limit) {
-      //   this.showNextButton = true;
-      // } else {
-      //   this.showNextButton = false;
-      // }
-      // if (this.page > 1) {
-      //   this.showPrevButton = true;
-      // } else {
-      //   this.showPrevButton = false;
-      // }
+      try {
+        let res = await psgAPI.checkPrevAndNext(this.id);
+        this.showPrevButton = res.prev.exist;
+        if (this.showPrevButton) {
+          this.prevId = res.prev.id;
+        }
+        this.showNextButton = res.next.exist;
+        if (this.showNextButton) {
+          this.nextId = res.next.id;
+        }
+      } catch (error) {
+        this.showPrevButton = false;
+        this.showNextButton = false;
+      }
     }
   }
 };

@@ -45,64 +45,25 @@ Passage.prototype.search = id => {
   });
 };
 
-Passage.prototype.update = params => {
-  let realParams = {
-    id: params.id,
-    title: params.title,
-    content: params.content,
-    category: params.category,
-    summary: params.summary,
-    operationPwd: params.operationPwd
-  };
-  return new Promise((resolve, reject) => {
-    axiosApi
-      .post("/api/passage/update", realParams)
-      .then(res => {
-        if (res.data.code === 0) resolve(true);
-        else reject(new Error(res.data.msg));
-      })
-      .catch(error => reject(error));
-  });
-};
-
-Passage.prototype.create = params => {
-  let realParams = {
-    title: params.title,
-    content: params.content,
-    category: params.category,
-    summary: params.summary,
-    operationPwd: params.operationPwd
-  };
-  return new Promise((resolve, reject) => {
-    axiosApi
-      .post("/api/passage/create", realParams)
-      .then(res => {
-        if (res.data.code === 0) resolve(true);
-        else reject(new Error(res.data.msg));
-      })
-      .catch(error => reject(error));
-  });
-};
-
-Passage.prototype.del = (id, operationPwd) => {
-  return new Promise((resolve, reject) => {
-    axiosApi
-      .post("/api/passage/del", {
-        id,
-        operationPwd
-      })
-      .then(res => {
-        if (res.data.code === 0) resolve(true);
-        else reject(new Error(res.data.msg));
-      })
-      .catch(error => reject(error));
-  });
-};
-
 Passage.prototype.fetchCategory = () => {
   return new Promise((resolve, reject) => {
     axiosApi
       .post("/api/passage/category/fetch")
+      .then(res => {
+        if (res.data.code === 0) resolve(res.data.results);
+        else reject(new Error(res.data.msg));
+      })
+      .catch(error => reject(error));
+  });
+};
+
+Passage.prototype.checkPrevAndNext = id => {
+  if (typeof id === "string") {
+    id = parseInt(id, 10);
+  }
+  return new Promise((resolve, reject) => {
+    axiosApi
+      .post("/api/passage/check/prev-next", { id })
       .then(res => {
         if (res.data.code === 0) resolve(res.data.results);
         else reject(new Error(res.data.msg));

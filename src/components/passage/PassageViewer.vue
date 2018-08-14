@@ -6,10 +6,16 @@
       </h3>
       <div class="article-top-meta">
         <span>
-          发布 : <a href="javascript:void(0);">{{ psg.createTime.substr(0,10) }}</a>
+          发布 : 
+          <router-link :to="{path: '/blog', query: {time: psg.createTime.substr(0,10)}}">
+            {{ psg.createTime.substr(0,10) }}
+          </router-link>
         </span>
         <span>
-          分类 : <a href="javascript:void(0);">{{psg.category}}</a>
+          分类 :
+          <router-link :to="{path: '/blog', query: {catergory: psg.category}}">
+            {{ psg.category }}
+          </router-link>
         </span>
         <span>
           浏览 : {{psg.scanTimes + 1}}
@@ -55,7 +61,7 @@ export default {
     this.fetchPassages();
   },
   watch: {
-    page(to, from) {
+    id(to, from) {
       if (to === from) return;
       this.fetchPassages();
     }
