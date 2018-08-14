@@ -1,12 +1,13 @@
 import Axios from "@/vendor/axios";
 const axiosApi = new Axios();
 
-function Friend() {}
+function Introduct() {}
 
-Friend.prototype.fetch = (page, step) => {
+Introduct.prototype.fetch = (type, page, step) => {
   return new Promise((resolve, reject) => {
     axiosApi
-      .post("/api/friend/fetch", {
+      .post("/api/introduct/content/fetch", {
+        type,
         page,
         step
       })
@@ -18,4 +19,4 @@ Friend.prototype.fetch = (page, step) => {
   });
 };
 
-export default Friend;
+export default Introduct;

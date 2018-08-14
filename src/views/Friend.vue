@@ -16,18 +16,19 @@
 </template>
 
 <script>
-import { md } from "@/vendor/setting.js";
 import Markdown from "@/vendor/markdown.js";
 import Friend from "@/vendor/friend.js";
+import Introduct from "@/vendor/introduct.js";
 
 const mdAPI = new Markdown();
 const friendAPI = new Friend();
+const introductAPI = new Introduct();
 
 export default {
   data() {
     return {
       friends: [],
-      contentHtml: mdAPI.format(md.friend),
+      content: "",
       page: 1,
       step: 20
     };
@@ -35,12 +36,32 @@ export default {
   mounted() {
     // Not need to listen scroll, because site is too less
     this.fetchFriends();
+    this.fetchCotent();
+  },
+  computed: {
+    contentHtml() {
+      return mdAPI.format(this.content);
+    }
   },
   methods: {
-    fetchFriends() {
-      friendAPI.fetch(this.page, this.step).then(res => {
-        this.friends = res;
-      });
+    async fetchFriends() {
+      try {
+        this.friends = await friendAPI.fetch(this.page, this.step);
+      } catch (error) {
+        this.friends = [];
+      }
+    },
+    async fetchCotent() {
+      try {
+        let contents = await introductAPI.fetch("friend", 1, 1);
+        if (contents.length < 1) {
+          this.content = "";
+        } else {
+          this.content = contents[0].content;
+        }
+      } catch (error) {
+        this.content = "";
+      }
     }
   }
 };

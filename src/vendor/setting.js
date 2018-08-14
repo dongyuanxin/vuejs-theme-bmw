@@ -21,17 +21,4 @@ const about = {
   }
 };
 
-const md = {
-  friend: `
-### 友链申请
-
-> 1. **申请前请先添加本博客链接** (特殊情况可在\`Email\`中说明)
-> 2. 如果您的链接违反国家规定, 我将不会通过您的申请
-> 3. 如果您的链接失效, 我将暂时删除您的链接
-> 4. 发送邮件: [yuanxin.me@gmail](). 内容包括链接, 昵称, 一句话介绍
-> 5. 更多资源: 入群请填写个人网站链接
-> ![个人网站开发交流群群二维码.png](https://upload-images.jianshu.io/upload_images/5486602-6f7c72026824895e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-`
-};
-
-export { cdn, server, about, md };
+export { cdn, server, about };
