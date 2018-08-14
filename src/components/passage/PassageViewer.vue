@@ -7,13 +7,13 @@
       <div class="article-top-meta">
         <span>
           发布 : 
-          <router-link :to="{path: '/blog', query: {time: psg.createTime.substr(0,10)}}">
+          <router-link :to="{path: '/search', query: {time: psg.createTime.substr(0,10)}}">
             {{ psg.createTime.substr(0,10) }}
           </router-link>
         </span>
         <span>
           分类 :
-          <router-link :to="{path: '/blog', query: {catergory: psg.category}}">
+          <router-link :to="{path: '/search', query: {catergory: psg.category}}">
             {{ psg.category }}
           </router-link>
         </span>

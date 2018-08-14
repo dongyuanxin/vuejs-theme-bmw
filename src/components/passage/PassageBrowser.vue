@@ -8,7 +8,9 @@
       </h3>
       <div class="article-top-meta">
         <span>
-          <a href="javascript:void(0);">{{ psg.createTime.substr(0,10) }}</a>
+          <router-link :to="{path: '/search', query: {time: psg.createTime.substr(0,10)}}">
+            {{ psg.createTime.substr(0,10) }}
+          </router-link>
         </span>
       </div>
       <div class="article-content">
@@ -18,7 +20,7 @@
         <div class="article-meta pull-left">
           <span>
             <i class="iconfont icon-tag"></i>分类:
-            <router-link :to="{path: '/blog', query: {catergory: psg.category}}">
+            <router-link :to="{path: '/search', query: {catergory: psg.category}}">
               {{psg.category}}
             </router-link>
           </span>
@@ -48,11 +50,23 @@ export default {
   props: {
     page: {
       type: Number,
-      default: 0
+      default: 1
     },
     limit: {
       type: Number,
       default: 5
+    },
+    search: {
+      type: Boolean,
+      default: false
+    },
+    searchKey: {
+      type: String,
+      default: ""
+    },
+    searchValue: {
+      type: String,
+      default: ""
     }
   },
   data() {
@@ -61,12 +75,28 @@ export default {
     };
   },
   mounted() {
-    this.fetchPassages();
+    if (this.search === false) {
+      this.fetchPassages();
+      return;
+    }
+    if (this.searchKey === "time") {
+      this.fetchByTime();
+    } else if (this.searchKey === "category") {
+      this.fetchByCategory();
+    }
   },
   watch: {
     page(to, from) {
       if (to === from) return;
-      this.fetchPassages();
+      if (this.search === false) {
+        this.fetchPassages();
+        return;
+      }
+      if (this.searchKey === "time") {
+        this.fetchByTime();
+      } else if (this.searchKey === "category") {
+        this.fetchByCategory();
+      }
     }
   },
   methods: {
@@ -79,6 +109,14 @@ export default {
       psgAPI.fetch(this.page, this.limit, true).then(res => {
         this.passages = res;
       });
+    },
+    fetchByCategory() {},
+    async fetchByTime() {
+      try {
+        this.passages = await psgAPI.fetchByTime(this.searchValue);
+      } catch (error) {
+        this.passages = [];
+      }
     }
   }
 };

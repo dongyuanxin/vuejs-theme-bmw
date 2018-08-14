@@ -72,4 +72,19 @@ Passage.prototype.checkPrevAndNext = id => {
   });
 };
 
+Passage.prototype.fetchByTime = time => {
+  return new Promise((resolve, reject) => {
+    if (time.length !== 10) {
+      return reject(new Error("Time format is wrong"));
+    }
+    axiosApi
+      .post("/api/passage/fetch-by-time", { time })
+      .then(res => {
+        if (res.data.code === 0) resolve(res.data.results);
+        else reject(new Error(res.data.msg));
+      })
+      .catch(error => reject(error));
+  });
+};
+
 export default Passage;
