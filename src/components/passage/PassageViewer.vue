@@ -54,7 +54,12 @@ export default {
   },
   data() {
     return {
-      psg: {}
+      psg: {
+        createTime: "",
+        category: "",
+        title: "",
+        content: ""
+      }
     };
   },
   mounted() {
@@ -71,7 +76,13 @@ export default {
       return mdAPI.format(md);
     },
     fetchPassages() {
-      this.psg = {};
+      this.psg = {
+        createTime: "",
+        category: "",
+        title: "",
+        content: ""
+      };
+
       psgAPI.search(this.id).then(res => {
         this.psg = res;
       });
