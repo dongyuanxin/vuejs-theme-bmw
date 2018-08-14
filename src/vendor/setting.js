@@ -5,7 +5,8 @@ const cdn = {
 };
 
 const server = {
-  url: "//193.112.241.232"
+  // url: "//193.112.241.232"
+  url: "//localhost"
 };
 
 const about = {
