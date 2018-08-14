@@ -29,6 +29,16 @@ const router = new Router({
       path: "/friend",
       name: "friend",
       component: () => import("@/views/Friend")
+    },
+    {
+      path: "/about",
+      name: "about",
+      component: () => import("@/views/about")
+    },
+    {
+      path: "*",
+      name: "error",
+      component: () => import("@/views/Home")
     }
   ],
   scrollBehavior(to, from, savedPosition) {

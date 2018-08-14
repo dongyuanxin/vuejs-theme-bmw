@@ -30,22 +30,22 @@ export default {
           path: "/"
         },
         {
-          name: "归档",
-          path: "/archive"
-        },
-        {
           name: "友链",
           path: "/friend"
+        },
+        {
+          name: "关于",
+          path: "/about"
         }
       ],
       outsizeNavigations: [
         {
-          name: "知乎",
-          href: "https://www.zhihu.com/people/godbmw/activities"
-        },
-        {
           name: "GITHUB",
           href: "https://github.com/dongyuanxin"
+        },
+        {
+          name: "知乎",
+          href: "https://www.zhihu.com/people/godbmw/activities"
         }
       ]
     };
