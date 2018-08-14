@@ -20,7 +20,7 @@
         <div class="article-meta pull-left">
           <span>
             <i class="iconfont icon-tag"></i>分类:
-            <router-link :to="{path: '/search', query: {catergory: psg.category}}">
+            <router-link :to="{path: '/search', query: {category: psg.category}}">
               {{psg.category}}
             </router-link>
           </span>
@@ -42,6 +42,7 @@ import "@/assets/css/article.scss";
 
 import Passage from "@/vendor/passage.js";
 import Markdown from "@/vendor/markdown.js";
+import Hub from "@/vendor/hub.js";
 
 const psgAPI = new Passage();
 const mdAPI = new Markdown();
@@ -71,10 +72,16 @@ export default {
   },
   data() {
     return {
-      passages: []
+      passages: [],
+      nextPage: 1
     };
   },
   mounted() {
+    Hub.$on("loadmore", () => {
+      this.fetchByCategory(true);
+    });
+    this.nextPage = this.page + 1;
+    this.passages = [];
     if (this.search === false) {
       this.fetchPassages();
       return;
@@ -82,21 +89,18 @@ export default {
     if (this.searchKey === "time") {
       this.fetchByTime();
     } else if (this.searchKey === "category") {
-      this.fetchByCategory();
+      this.fetchByCategory(false);
     }
   },
   watch: {
     page(to, from) {
-      if (to === from) return;
-      if (this.search === false) {
-        this.fetchPassages();
-        return;
-      }
-      if (this.searchKey === "time") {
-        this.fetchByTime();
-      } else if (this.searchKey === "category") {
-        this.fetchByCategory();
-      }
+      this.watchProp(to, from);
+    },
+    searchKey(to, from) {
+      this.watchProp(to, from);
+    },
+    searchValue(to, from) {
+      this.watchProp(to, from);
     }
   },
   methods: {
@@ -110,12 +114,43 @@ export default {
         this.passages = res;
       });
     },
-    fetchByCategory() {},
+    async fetchByCategory(next) {
+      try {
+        let morePassages = await psgAPI.fetchByCategory(
+          this.searchValue,
+          next ? this.nextPage : this.page,
+          this.limit
+        );
+        if (morePassages.length > 0) {
+          this.passages = next
+            ? this.passages.concat(morePassages)
+            : morePassages; // router query change will cause 2 flush in 'watch:'
+          this.nextPage = next ? this.nextPage + 1 : this.nextPage;
+        } else {
+          Hub.$emit("finish-load");
+        }
+      } catch (error) {}
+    },
     async fetchByTime() {
       try {
         this.passages = await psgAPI.fetchByTime(this.searchValue);
       } catch (error) {
         this.passages = [];
+      }
+    },
+    watchProp(to, from) {
+      this.nextPage = this.page + 1;
+      if (to === from) {
+        return;
+      }
+      if (this.search === false) {
+        this.fetchPassages();
+        return;
+      }
+      if (this.searchKey === "time") {
+        this.fetchByTime();
+      } else if (this.searchKey === "category") {
+        this.fetchByCategory(false);
       }
     }
   }

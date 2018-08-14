@@ -2,7 +2,7 @@
   <div class="container">
     <passage-browser :page="page" :limit="limit" :search="true" :search-key="searchKey" :search-value="searchValue"></passage-browser>
     <nav class="page-navigation">
-      <a href="" v-if="showButton"> 加载更多... </a>
+      <a href="javascript:void(0);" v-if="showButton" @click.prevent ="loadMore" :class="{disabled: finishLoad}">{{buttonMeta}}</a>
     </nav>
   </div>
 </template>
@@ -12,6 +12,7 @@ import "@/assets/css/article.scss";
 
 import PassageBrowser from "@/components/passage/PassageBrowser";
 import Passage from "@/vendor/passage.js";
+import Hub from "@/vendor/hub.js";
 
 const psgAPI = new Passage();
 
@@ -19,13 +20,17 @@ export default {
   data() {
     return {
       page: 1,
-      limit: 5,
+      limit: 3,
       showButton: false,
       searchKey: "",
-      searchValue: ""
+      searchValue: "",
+      finishLoad: false
     };
   },
   beforeMount() {
+    Hub.$on("finish-load", () => {
+      this.finishLoad = true;
+    });
     this.handleRoute();
     this.handleButton();
   },
@@ -35,11 +40,17 @@ export default {
       this.handleButton();
     }
   },
+  computed: {
+    buttonMeta() {
+      return this.finishLoad ? "加载完毕" : "加载更多 ...";
+    }
+  },
   components: {
     PassageBrowser
   },
   methods: {
     handleButton() {
+      this.finishLoad = false;
       if (this.$route.query.hasOwnProperty("time")) {
         this.showButton = false;
       } else if (this.$route.query.hasOwnProperty("category")) {
@@ -54,7 +65,29 @@ export default {
         this.searchKey = "category";
         this.searchValue = this.$route.query["category"];
       }
+    },
+    loadMore() {
+      if (this.finishLoad) {
+        return;
+      }
+      console.log("Load more passages");
+      Hub.$emit("loadmore");
     }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.disabled {
+  background-color: #f5f7fa;
+  border-color: #e4e7ed;
+  color: #c0c4cc;
+  cursor: not-allowed;
+}
+
+.disabled:hover {
+  background-color: #f5f7fa;
+  border-color: #e4e7ed;
+  color: #c0c4cc;
+}
+</style>

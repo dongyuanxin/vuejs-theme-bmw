@@ -13,7 +13,7 @@
         </span>
         <span>
           分类 :
-          <router-link :to="{path: '/search', query: {catergory: psg.category}}">
+          <router-link :to="{path: '/search', query: {category: psg.category}}">
             {{ psg.category }}
           </router-link>
         </span>

@@ -87,4 +87,19 @@ Passage.prototype.fetchByTime = time => {
   });
 };
 
+Passage.prototype.fetchByCategory = (category, page, step) => {
+  return new Promise((resolve, reject) => {
+    if (category.length <= 0) {
+      return reject(new Error("Category is missing"));
+    }
+    axiosApi
+      .post("/api/passage/fetch-by-category", { category, page, step })
+      .then(res => {
+        if (res.data.code === 0) resolve(res.data.results);
+        else reject(new Error(res.data.msg));
+      })
+      .catch(error => reject(error));
+  });
+};
+
 export default Passage;
