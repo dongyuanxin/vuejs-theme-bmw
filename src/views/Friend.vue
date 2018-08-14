@@ -1,13 +1,13 @@
 <template>
   <div class="container">
     <div class="friend-navigation">
-      <div class="card" v-for="(item, index) in arr" :key="index">
-        <img src="https://linklink.b0.upaiyun.com/Aaron.png">
+      <div class="card" v-for="(item, index) in friends" :key="index">
+        <img :src="item.headImgUrl">
         <p class="card-header">
-          @ <a href="">YuanXin</a>
+          @ <a :href="item.site" target="_blank">{{item.nickname}}</a>
         </p>
         <p class="card-meta">
-          介绍我介绍我介绍我介绍我介绍我介绍我介绍我介绍我
+          {{item.meta}}
         </p>
       </div>
     </div>
@@ -18,15 +18,30 @@
 <script>
 import { md } from "@/vendor/setting.js";
 import Markdown from "@/vendor/markdown.js";
+import Friend from "@/vendor/friend.js";
 
 const mdAPI = new Markdown();
+const friendAPI = new Friend();
 
 export default {
   data() {
     return {
-      arr: [1, 2, 3, 4],
-      contentHtml: mdAPI.format(md.friend)
+      friends: [],
+      contentHtml: mdAPI.format(md.friend),
+      page: 1,
+      step: 20
     };
+  },
+  mounted() {
+    // Not need to listen scroll, because site is too less
+    this.fetchFriends();
+  },
+  methods: {
+    fetchFriends() {
+      friendAPI.fetch(this.page, this.step).then(res => {
+        this.friends = res;
+      });
+    }
   }
 };
 </script>
