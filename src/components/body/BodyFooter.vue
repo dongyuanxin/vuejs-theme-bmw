@@ -1,6 +1,8 @@
 <template>
   <footer>
     <p class="site-info">
+      博客已萌萌哒运行{{ timeStr }}<span class="my-face">(●'◡'●)ﾉ♥</span>
+      <br>
       托管于
       <a href="https://github.com/" target="_blank">Github</a>
       ,
@@ -20,9 +22,33 @@
 </template>
 
 <script>
+import "@/assets/css/animation.scss";
 export default {
   data() {
-    return {};
+    return {
+      timeStr: "",
+      startTimestamp: 0,
+      updateDelay: 500
+    };
+  },
+  mounted() {
+    this.startTimestamp = new Date(2018, 2, 10, 23, 58).getTime();
+    setTimeout(this.updateTimeStr, this.updateDelay);
+  },
+  methods: {
+    updateTimeStr() {
+      let offset = parseInt(
+          (new Date().getTime() - this.startTimestamp) / 1000,
+          10
+        ),
+        day = Math.floor(offset / 86400),
+        hour = Math.floor((offset % 86400) / 3600),
+        minute = Math.floor(((offset % 86400) % 3600) / 60),
+        second = Math.floor(((offset % 86400) % 3600) % 60);
+      this.timeStr =
+        day + "天" + hour + "小时" + minute + "分钟" + second + "秒";
+      setTimeout(this.updateTimeStr, this.updateDelay);
+    }
   }
 };
 </script>
@@ -40,11 +66,17 @@ footer {
 p.site-info {
   display: block;
   color: #9e9e9e;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   margin: 0.5rem 0;
 
   a {
     color: #f03838;
   }
+}
+
+.my-face {
+  animation: my-face 5s infinite ease-in-out;
+  display: inline-block;
+  margin: 0 5px;
 }
 </style>
