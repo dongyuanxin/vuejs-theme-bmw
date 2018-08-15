@@ -106,7 +106,14 @@ export default {
   max-width: 1170px; /* max-width 可以兼容手机屏幕 */
   margin: 0 auto;
   background-color: white;
-  padding: 80px 10px 10px;
+  padding: 8rem 1rem 1rem;
+  transition: 0.15s;
+}
+
+@media (max-width: 768px) {
+  #app {
+    padding: 2.5rem 0.5rem 0.5rem;
+  }
 }
 .back-to-top {
   display: block;
