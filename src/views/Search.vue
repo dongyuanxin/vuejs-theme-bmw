@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       page: 1,
-      limit: 3,
+      limit: 5,
       showButton: false,
       searchKey: "",
       searchValue: "",
