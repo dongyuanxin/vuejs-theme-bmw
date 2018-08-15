@@ -5,14 +5,17 @@
       <router-link :to="'/passage/' + prevId" v-if="showPrevButton">上一篇</router-link>
       <router-link :to="'/passage/' + nextId" v-if="showNextButton">下一篇</router-link>
     </nav>
+    <div id="vcomments"></div>
   </div>
 </template>
 
 <script>
 import "@/assets/css/article.scss";
+import "@/assets/css/vcomments.scss";
 
 import PassageViewer from "@/components/passage/PassageViewer";
 import Passage from "@/vendor/passage.js";
+import { lc } from "@/vendor/setting.js";
 
 const psgAPI = new Passage();
 
@@ -23,16 +26,21 @@ export default {
       showPrevButton: false,
       showNextButton: false,
       prevId: 1,
-      nextId: 1
+      nextId: 1,
+      vcomments: null
     };
   },
   beforeMount() {
     this.id = this.$route.params.id.toString();
     this.handleButton();
   },
+  mounted() {
+    this.initValine();
+  },
   watch: {
     $route(to, from) {
       this.id = this.$route.params.id.toString();
+      this.initValine();
       this.handleButton();
     }
   },
@@ -55,6 +63,18 @@ export default {
         this.showPrevButton = false;
         this.showNextButton = false;
       }
+    },
+    initValine() {
+      this.vcomments = new Valine({
+        el: "#vcomments",
+        appId: lc.i,
+        appKey: lc.k,
+        notify: false,
+        verify: false,
+        avatar: "robohash",
+        placeholder: "写下你的评论...",
+        path: this.id
+      });
     }
   }
 };

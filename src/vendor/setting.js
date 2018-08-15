@@ -9,4 +9,9 @@ const server = {
   url: "//localhost"
 };
 
-export { cdn, server };
+const lc = {
+  i: "j3TlSqBMjoXnrIrNYB5En5Y1-gzGzoHsz",
+  k: "d2rWR1nq5chvzXzh3bSyB8ug"
+};
+
+export { cdn, server, lc };
