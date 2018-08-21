@@ -14,7 +14,7 @@
         </span>
       </div>
       <div class="article-content">
-        <div class="markdown-body" v-html="mdToHtml(psg.summary)"></div>
+        <div class="markdown-body article-content--inner" v-html="mdToHtml(psg.summary)"></div>
       </div>
       <div class="article-footer">
         <div class="article-meta pull-left">
@@ -156,3 +156,11 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.article-content--inner {
+  img {
+    max-width: 300px !important;
+  }
+}
+</style>
