@@ -45,10 +45,10 @@ Passage.prototype.search = id => {
   });
 };
 
-Passage.prototype.fetchCategory = () => {
+Passage.prototype.fetchCategoryWithCount = () => {
   return new Promise((resolve, reject) => {
     axiosApi
-      .post("/api/passage/category/fetch")
+      .post("/api/passage/category/fetch-with-count")
       .then(res => {
         if (res.data.code === 0) resolve(res.data.results);
         else reject(new Error(res.data.msg));
