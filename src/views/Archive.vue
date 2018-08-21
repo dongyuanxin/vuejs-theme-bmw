@@ -35,7 +35,13 @@ export default {
   methods: {
     async fetchCategories() {
       try {
-        this.categories = await psgAPI.fetchCategoryWithCount();
+        let _ = await psgAPI.fetchCategoryWithCount();
+        _.sort((a, b) => {
+          if (a.count > b.count) return -1;
+          if (a.count < b.count) return 1;
+          return 0;
+        });
+        this.categories = _;
       } catch (error) {
         console.log(error.message);
       }
