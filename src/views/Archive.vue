@@ -54,7 +54,7 @@ export default {
   line-height: 3;
   h3 {
     text-align: center;
-    font-size: 15px;
+    font-size: 1.8rem;
     font-weight: 500;
     margin: 3rem 0 2rem;
   }
@@ -63,7 +63,7 @@ export default {
 .category-item {
   display: inline-block;
   margin: 0.4rem 1.4rem;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-family: "Monda", "PingFang SC", "Microsoft YaHei", sans-serif;
 
   a {
