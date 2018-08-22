@@ -55,6 +55,8 @@ export default {
         this.showButton = false;
       } else if (this.$route.query.hasOwnProperty("category")) {
         this.showButton = true;
+      } else if (this.$route.query.hasOwnProperty("tag")) {
+        this.showButton = true;
       }
     },
     handleRoute() {
@@ -64,6 +66,9 @@ export default {
       } else if (this.$route.query.hasOwnProperty("category")) {
         this.searchKey = "category";
         this.searchValue = this.$route.query["category"];
+      } else if (this.$route.query.hasOwnProperty("tag")) {
+        this.searchKey = "tag";
+        this.searchValue = this.$route.query["tag"];
       }
     },
     loadMore() {

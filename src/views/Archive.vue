@@ -10,6 +10,15 @@
           [{{ category.count }}]
         </i>
       </span>
+      <h3>
+        共计 {{tagCount}} 个标签
+      </h3>
+      <span v-for="(tag, index) in tags" :key="index" class="tag-item">
+        <router-link :to="{path: '/search', query: {tag: tag.name}}"> {{tag.name}} </router-link>
+        <i>
+          [{{ tag.count }}]
+        </i>
+      </span>
     </div>
   </div>
 </template>
@@ -21,15 +30,20 @@ const psgAPI = new Passage();
 export default {
   data() {
     return {
-      categories: []
+      categories: [],
+      tags: []
     };
   },
   beforeMount() {
     this.fetchCategories();
+    this.fetchTags();
   },
   computed: {
     categoryCount() {
       return this.categories.length;
+    },
+    tagCount() {
+      return this.tags.length;
     }
   },
   methods: {
@@ -42,6 +56,19 @@ export default {
           return 0;
         });
         this.categories = _;
+      } catch (error) {
+        console.log(error.message);
+      }
+    },
+    async fetchTags() {
+      try {
+        let _ = await psgAPI.fetchTagWithCount();
+        _.sort((a, b) => {
+          if (a.count > b.count) return -1;
+          if (a.count < b.count) return 1;
+          return 0;
+        });
+        this.tags = _;
       } catch (error) {
         console.log(error.message);
       }
@@ -60,7 +87,7 @@ export default {
   }
 }
 
-.category-item {
+%item {
   display: inline-block;
   margin: 0.4rem 1.4rem;
   font-size: 1.6rem;
@@ -100,6 +127,14 @@ export default {
     font-style: normal;
     padding: 0 0.2rem;
   }
+}
+
+.category-item {
+  @extend %item;
+}
+
+.tag-item {
+  @extend %item;
 }
 </style>
 

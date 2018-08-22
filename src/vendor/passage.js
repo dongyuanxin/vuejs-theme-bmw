@@ -102,4 +102,31 @@ Passage.prototype.fetchByCategory = (category, page, step) => {
   });
 };
 
+Passage.prototype.fetchByTag = (tag, page, step) => {
+  return new Promise((resolve, reject) => {
+    if (tag.length <= 0) {
+      return reject(new Error("Category is missing"));
+    }
+    axiosApi
+      .post("/api/tag/fetch", { tag, page, step })
+      .then(res => {
+        if (res.data.code === 0) resolve(res.data.results);
+        else reject(new Error(res.data.msg));
+      })
+      .catch(error => reject(error));
+  });
+};
+
+Passage.prototype.fetchTagWithCount = () => {
+  return new Promise((resolve, reject) => {
+    axiosApi
+      .post("/api/tag/fetch-with-count")
+      .then(res => {
+        if (res.data.code === 0) resolve(res.data.results);
+        else reject(new Error(res.data.msg));
+      })
+      .catch(error => reject(error));
+  });
+};
+
 export default Passage;

@@ -27,7 +27,12 @@
       <div class="article-footer">
         <div class="article-meta pull-left">
           <span>
-            <i class="iconfont icon-06tags"></i> 标签: #{{psg.category}}
+            <i class="iconfont icon-06tags"></i> 标签: # 
+            <span v-for="(tag, tagIndex) in psg.tags" :key="tagIndex" class="span--tag">
+              <router-link :to="{path: '/search', query: {tag: tag}}">
+                {{ tag }}
+              </router-link>
+            </span>
           </span>
         </div>
         <div class="article-meta pull-right">

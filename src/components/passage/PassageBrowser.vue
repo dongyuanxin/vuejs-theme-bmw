@@ -25,7 +25,12 @@
             </router-link>
           </span>
           <span>
-            <i class="iconfont icon-06tags"></i> 标签: #{{psg.category}}
+            <i class="iconfont icon-06tags"></i> 标签: # 
+            <span v-for="(tag, tagIndex) in psg.tags" :key="tagIndex" class="span--tag">
+              <router-link :to="{path: '/search', query: {tag: tag}}">
+                {{ tag }}
+              </router-link>
+            </span>
           </span>
         </div>
         <div class="article-meta pull-right">
@@ -78,7 +83,11 @@ export default {
   },
   mounted() {
     Hub.$on("loadmore", () => {
-      this.fetchByCategory(true);
+      if (this.searchKey === "category") {
+        this.fetchByCategory(true);
+      } else if (this.searchKey === "tag") {
+        this.fetchByTag(true);
+      }
     });
     this.nextPage = this.page + 1;
     this.passages = [];
@@ -90,6 +99,8 @@ export default {
       this.fetchByTime();
     } else if (this.searchKey === "category") {
       this.fetchByCategory(false);
+    } else if (this.searchKey === "tag") {
+      this.fetchByTag(false);
     }
   },
   watch: {
@@ -113,6 +124,23 @@ export default {
       psgAPI.fetch(this.page, this.limit, true).then(res => {
         this.passages = res;
       });
+    },
+    async fetchByTag(next) {
+      try {
+        let morePassages = await psgAPI.fetchByTag(
+          this.searchValue,
+          next ? this.nextPage : this.page,
+          this.limit
+        );
+        if (morePassages.length > 0) {
+          this.passages = next
+            ? this.passages.concat(morePassages)
+            : morePassages; // router query change will cause 2 flush in 'watch:'
+          this.nextPage = next ? this.nextPage + 1 : this.nextPage;
+        } else {
+          Hub.$emit("finish-load");
+        }
+      } catch (error) {}
     },
     async fetchByCategory(next) {
       try {
@@ -151,6 +179,8 @@ export default {
         this.fetchByTime();
       } else if (this.searchKey === "category") {
         this.fetchByCategory(false);
+      } else if (this.searchKey === "tag") {
+        this.fetchByTag(false);
       }
     }
   }
