@@ -118,6 +118,10 @@
     span:not(:last-child) {
       margin-right: 3rem;
     }
+    span.span--tag {
+      display: inline;
+      margin-right: 0;
+    }
 
     i {
       vertical-align: middle;
