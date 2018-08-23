@@ -12,6 +12,7 @@
       </div>
     </div>
     <div class="markdown-body" v-html="contentHtml"></div>
+    <div id="vcomments"></div>
   </div>
 </template>
 
@@ -19,6 +20,8 @@
 import Markdown from "@/vendor/markdown.js";
 import Friend from "@/vendor/friend.js";
 import Introduct from "@/vendor/introduct.js";
+import "@/assets/css/vcomments.scss";
+import { lc } from "@/vendor/setting.js";
 
 const mdAPI = new Markdown();
 const friendAPI = new Friend();
@@ -35,6 +38,16 @@ export default {
   },
   mounted() {
     // Not need to listen scroll, because site is too less
+    new Valine({
+      el: "#vcomments",
+      appId: lc.i,
+      appKey: lc.k,
+      notify: false,
+      verify: false,
+      avatar: "robohash",
+      placeholder: "欢迎添加友链♪(^∇^*)",
+      path: "friend"
+    });
     this.fetchFriends();
     this.fetchCotent();
   },
@@ -139,6 +152,16 @@ export default {
 
 .markdown-body {
   margin-bottom: 3rem;
+}
+
+#vcomments {
+  margin-top: 8rem;
+}
+
+@media (max-width: 768px) {
+  #vcomments {
+    margin-top: 5rem !important;
+  }
 }
 </style>
 
