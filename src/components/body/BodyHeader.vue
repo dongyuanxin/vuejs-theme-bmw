@@ -2,7 +2,7 @@
   <header>
     <div class="site-brand">
       <h1 class="site-title">
-        <a href="/">YuanXin</a>
+        <a href="/">GODBMW</a>
       </h1>
       <p class="site-description">Code is Poetry</p>
       <p></p>
