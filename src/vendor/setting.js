@@ -2,7 +2,7 @@ const cdn = {
   bgImgUrl: "/image/wallpaper", // 背景图片地址
   mdImgUrl:
     process.env.NODE_ENV === "development"
-      ? "//raw.githubusercontent.com/dongyuanxin/markdown-static/master/"
+      ? "//raw.githubusercontent.com/dongyuanxin/markdown-static/master"
       : "//blog-1255463368.file.myqcloud.com/markdown-static" // markdown图片地址
 };
 
