@@ -9,6 +9,9 @@ Marked.setOptions({
 });
 
 const replaceImgPath = (str, imgUlr) => {
+  if (str === undefined || str === null || typeof str !== "string") {
+    return "";
+  }
   let re = /!\[.*?\]\((\/.*?)\)/gm,
     replacedStr = "",
     exec = null,
