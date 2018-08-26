@@ -2,7 +2,7 @@
   <header>
     <div class="site-brand">
       <h1 class="site-title">
-        <a href="/">GODBMW</a>
+        <a href="/">GodBMW</a>
       </h1>
       <p class="site-description">Code is Poetry</p>
       <p></p>
@@ -70,7 +70,6 @@ nav {
   margin-bottom: 2rem;
   font-family: "Open Sans", arial, sans-serif;
   letter-spacing: 0.1em;
-  text-transform: uppercase;
 
   .site-title {
     margin: 0;
@@ -91,6 +90,7 @@ nav {
   }
 
   .site-description {
+    text-transform: uppercase;
     color: #9e9e9e;
     font-size: 1.3rem;
     margin: 1rem 0 0;

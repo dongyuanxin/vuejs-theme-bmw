@@ -3,20 +3,17 @@
     <p class="site-info">
       博客已萌萌哒运行{{ timeStr }}<span class="my-face">(●'◡'●)ﾉ♥</span>
       <br>
-      托管于
-      <a href="https://github.com/" target="_blank">Github</a>
-      ,
-      <a href="https://coding.net/" target="_blank">CODING</a>
-      提供CDN服务
+      <a href="https://www.google.com/analytics/" target="_blank">Google Analytics</a> 提供网站统计服务. 
+      <a href="https://cloud.tencent.com/" target="_blank">Tencent Cloud</a> 提供CDN服务. 
+      <a href="https://sg.godaddy.com/"  target="_blank">GoDaddy</a> 提供域名注册服务. 
+      <a href="https://www.dnspod.cn/" target="_blank">DNSPod</a> 提供DNS解析服务. 
       <br>
-      由
-      <a href="https://vuejs.org/" target="_blank">VueJs</a>
-      ,
-      <a href="https://koa.bootcss.com/" target="_blank">Koa2</a>
-      和
-      <a href="https://webpack.github.io/" target="_blank">Webpack</a>
-      强力驱动
+      由 <a href="https://vuejs.org/" target="_blank">VueJs</a> + <a href="https://koa.bootcss.com/" target="_blank">Koa2</a> + <a href="https://webpack.github.io/" target="_blank">Webpack</a> 强力驱动.
+      运行于 <a href="https://cloud.tencent.com/" target="_blank">Tencent Cloud</a> 云服务器. 
+      <a href="https://www.trustasia.com/" target="_blank">TrustAsia</a> 签发SSL证书. 
+      <a href="http://www.miibeian.gov.cn/state/outPortal/loginPortal.action" target="_blank">粤ICP备18028400号</a> .
       <br>
+      Vesion is v3.0. Made by 💗GodBMW( 董沅鑫 ).
     </p>
   </footer>
 </template>
