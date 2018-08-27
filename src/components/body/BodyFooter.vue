@@ -13,7 +13,7 @@
       <a href="https://www.trustasia.com/" target="_blank">TrustAsia</a> 签发SSL证书. 
       <a href="http://www.miibeian.gov.cn/state/outPortal/loginPortal.action" target="_blank">粤ICP备18028400号</a> .
       <br>
-      Vesion is v3.0. Made by 💗GodBMW( 董沅鑫 ).
+      Vesion is v3.0. Made by 💗GodBMW( <a href="https://github.com/dongyuanxin">董沅鑫</a> ).
     </p>
   </footer>
 </template>
