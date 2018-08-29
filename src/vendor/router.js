@@ -95,7 +95,11 @@ router.beforeEach((to, from, next) => {
     return next();
   } else if (to.name === "passage") {
     psgAPI
-      .search(to.params.id)
+      .search({
+        id: to.params.id,
+        isTitle: true,
+        isScan: false
+      })
       .then(res => {
         if (res.hasOwnProperty("title") && res.title.length > 0) {
           document.title = res.title + " - GODBMW";

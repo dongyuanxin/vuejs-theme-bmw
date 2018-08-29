@@ -88,9 +88,15 @@ export default {
         content: ""
       };
 
-      psgAPI.search(this.id).then(res => {
-        this.psg = res;
-      });
+      psgAPI
+        .search({
+          id: this.id,
+          isScan: true,
+          isTitle: false
+        })
+        .then(res => {
+          this.psg = res;
+        });
     }
   }
 };

@@ -31,12 +31,10 @@ Passage.prototype.calculate = () => {
   });
 };
 
-Passage.prototype.search = id => {
+Passage.prototype.search = params => {
   return new Promise((resolve, reject) => {
     axiosApi
-      .post("/api/passage/search", {
-        id
-      })
+      .post("/api/passage/search", params)
       .then(res => {
         if (res.data.code === 0) resolve(res.data.results);
         else resolve([]);
