@@ -8,6 +8,7 @@
         <i class="iconfont icon-60"></i>{{viewPercent}}%
       </span>
     </div>
+    <div id="aplayer"></div>
   </div>
 </template>
 
@@ -17,6 +18,11 @@ import "@/assets/icon/iconfont.css";
 
 import BodyFooter from "@/components/body/BodyFooter.vue";
 import BodyHeader from "@/components/body/BodyHeader.vue";
+
+import Music from "@/vendor/music.js";
+
+const musicAPI = new Music();
+
 export default {
   name: "App",
   components: {
@@ -30,6 +36,7 @@ export default {
     };
   },
   mounted() {
+    this.playMusic();
     let app = document.getElementById("app");
     document.addEventListener("scroll", this.throttle(), false);
   },
@@ -96,6 +103,18 @@ export default {
           document.body.scrollTop = scrollTop - step;
         }
       }, delay);
+    },
+    async playMusic() {
+      let audio = await musicAPI.fetch();
+      let ap = new APlayer({
+        container: document.querySelector("#aplayer"),
+        fixed: true,
+        theme: "#ffa081",
+        autoplay: true,
+        listMaxHeight: 90,
+        lrcType: 3,
+        audio
+      });
     }
   }
 };
@@ -135,7 +154,7 @@ export default {
 @media (max-width: 768px) {
   .back-to-top {
     right: 1rem;
-    bottom: 1.5rem;
+    bottom: 7rem;
   }
 }
 
