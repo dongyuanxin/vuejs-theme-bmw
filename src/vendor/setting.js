@@ -3,7 +3,8 @@ const cdn = {
   mdImgUrl:
     process.env.NODE_ENV === "development"
       ? "//raw.githubusercontent.com/dongyuanxin/markdown-static/master"
-      : "//blog-1255463368.file.myqcloud.com/markdown-static" // markdown图片地址
+      : "//blog-1255463368.file.myqcloud.com/markdown-static", // markdown图片地址
+  musicUrl: "//blog-1255463368.file.myqcloud.com/music"
 };
 
 const server = {

@@ -115,6 +115,7 @@ export default {
         lrcType: 3,
         audio
       });
+      ap.on("error", () => ap.pause());
     }
   }
 };
