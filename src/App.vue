@@ -36,7 +36,9 @@ export default {
     };
   },
   mounted() {
-    this.playMusic();
+    if (document.body.clientWidth >= 480) {
+      this.playMusic();
+    }
     let app = document.getElementById("app");
     document.addEventListener("scroll", this.throttle(), false);
   },
@@ -106,16 +108,18 @@ export default {
     },
     async playMusic() {
       let audio = await musicAPI.fetch();
-      let ap = new APlayer({
-        container: document.querySelector("#aplayer"),
-        fixed: true,
-        theme: "#ffa081",
-        autoplay: true,
-        listMaxHeight: 90,
-        lrcType: 3,
-        audio
-      });
-      ap.on("error", () => ap.pause());
+      setTimeout(() => {
+        let ap = new APlayer({
+          container: document.querySelector("#aplayer"),
+          fixed: true,
+          theme: "#ffa081",
+          autoplay: false,
+          listMaxHeight: 90,
+          lrcType: 3,
+          audio
+        });
+        ap.on("error", () => ap.pause());
+      }, 1000 * 8);
     }
   }
 };
@@ -152,10 +156,10 @@ export default {
   line-height: 2.4rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .back-to-top {
-    right: 1rem;
-    bottom: 7rem;
+    right: 2rem;
+    bottom: 2rem;
   }
 }
 
