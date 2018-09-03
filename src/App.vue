@@ -9,6 +9,10 @@
       </span>
     </div>
     <div id="aplayer"></div>
+    <aside id="sidebar">
+      <p><span> Table of Contents </span></p>
+      <ol id="sidebar-toc"></ol>
+    </aside>
   </div>
 </template>
 
@@ -139,12 +143,13 @@ export default {
     padding: 2.5rem 0.5rem 0.5rem;
   }
 }
+
 .back-to-top {
   display: block;
   position: fixed;
   z-index: 900;
-  right: 3rem;
-  bottom: 3rem;
+  right: 2rem;
+  bottom: 2rem;
   cursor: pointer;
   text-align: center;
   background: #222;
@@ -156,11 +161,27 @@ export default {
   line-height: 2.4rem;
 }
 
-@media (max-width: 480px) {
-  .back-to-top {
-    right: 2rem;
-    bottom: 2rem;
-  }
+#sidebar {
+  width: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 600;
+  background: rgba(0, 0, 0, 0.8);
+  transition: all 0.15s;
+  display: block;
+}
+
+#app.sidebar-active {
+  margin: 0;
+  margin-right: 250px;
+  max-width: none;
+  width: calc(100vw - 250px);
+}
+
+#sidebar.sidebar-active {
+  width: 250px;
 }
 
 .hidden {

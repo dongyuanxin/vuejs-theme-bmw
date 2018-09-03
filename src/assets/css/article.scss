@@ -1,3 +1,5 @@
+$header-level: 6 !default;
+
 // 导航栏样式
 .page-navigation {
   position: relative;
@@ -148,5 +150,65 @@
     content: " ";
     display: block;
     clear: both;
+  }
+}
+
+#sidebar {
+  font-weight: 300;
+  p:first-child {
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 2rem 0;
+    font-family: "Lato", "PingFang SC", "Microsoft YaHei", sans-serif;
+
+    span {
+      color: #87ffb2;
+      border-bottom: 1px solid #87ffb2;
+      display: inline-block;
+      line-height: 2;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+
+  ol {
+    display: block;
+    // padding: 0 2px 5px 10px;
+    text-align: left;
+    list-style: none;
+    font-size: 1.4rem;
+
+    li {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: justify;
+      line-height: 2;
+    }
+
+    a {
+      transition: all 0.2s ease-in-out;
+      color: #ccc;
+      border-bottom: solid 1px #777;
+
+      &:hover {
+        color: #87ffb2;
+        border-bottom-color: #87ffb2;
+      }
+    }
+
+    @for $i from 2 to ($header-level + 1) {
+      .toc-h#{$i} {
+        padding-left: 10px * $i;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    padding: 1rem 0;
+    p:first-child {
+      margin-top: 1rem;
+    }
   }
 }

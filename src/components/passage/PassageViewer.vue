@@ -70,6 +70,9 @@ export default {
   mounted() {
     this.fetchPassages();
   },
+  beforeDestroy() {
+    this.removeToc();
+  },
   watch: {
     id(to, from) {
       if (to === from) return;
@@ -96,7 +99,42 @@ export default {
         })
         .then(res => {
           this.psg = res;
+          if (document.body.clientWidth >= 768) {
+            setTimeout(this.generateToc, 500);
+          }
         });
+    },
+    generateToc() {
+      $("#sidebar-toc").empty();
+      let sidebar = $("#sidebar"),
+        app = $("#app"),
+        topBtn = $(".back-to-top");
+      app.addClass("sidebar-active");
+      sidebar.addClass("sidebar-active");
+      topBtn.attr("style", "right: calc(2rem + 250px);");
+      topBtn.addClass("sidebar-active");
+      $(".markdown-body")
+        .find("h2,h3,h4,h5,h6")
+        .each(function(i, item) {
+          let tag = $(item).get(0).localName;
+          let tagID = $(item)
+            .text()
+            .replace(/\s{2}/g, "");
+          $(item).attr("id", tagID);
+          $("#sidebar-toc").append(`
+          <li class="toc-${tag}">
+            <a href="#${tagID}">
+              ${tagID}
+            </a>
+          </li>
+        `);
+        });
+    },
+    removeToc() {
+      $("#sidebar-toc").empty();
+      $("#sidebar").removeClass("sidebar-active");
+      $("#app").removeClass("sidebar-active");
+      $(".back-to-top").attr("style", "");
     }
   }
 };

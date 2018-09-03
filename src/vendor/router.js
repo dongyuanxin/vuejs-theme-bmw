@@ -73,6 +73,11 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
+  if (to.hash) {
+    return {
+      selector: to.hash
+    };
+  }
   if (to.meta.title) {
     document.title = to.meta.title;
     return next();
