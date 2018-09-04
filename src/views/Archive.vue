@@ -4,7 +4,7 @@
       <h3>
         共计 {{categoryCount}} 个分类
       </h3>
-      <span v-for="(category, index) in categories" :key="index" class="category-item">
+      <span v-for="(category, index) in categories" :key="'category' + index" class="category-item">
         <router-link :to="{path: '/search', query: {category: category.name}}"> {{category.name}} </router-link>
         <i>
           [{{ category.count }}]
@@ -13,7 +13,7 @@
       <h3>
         共计 {{tagCount}} 个标签
       </h3>
-      <span v-for="(tag, index) in tags" :key="index" class="tag-item">
+      <span v-for="(tag, index) in tags" :key="'tag' + index" class="tag-item">
         <router-link :to="{path: '/search', query: {tag: tag.name}}"> {{tag.name}} </router-link>
         <i>
           [{{ tag.count }}]
