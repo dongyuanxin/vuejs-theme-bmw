@@ -184,6 +184,16 @@ export default {
   width: 250px;
 }
 
+@media (max-width: 768px) {
+  #app.sidebar-active {
+    margin-right: 200px;
+    width: calc(100vw - 200px);
+  }
+  #sidebar.sidebar-active {
+    width: 200px;
+  }
+}
+
 .hidden {
   display: none;
   opacity: 0;

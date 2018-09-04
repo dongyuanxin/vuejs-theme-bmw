@@ -106,12 +106,19 @@ export default {
     },
     generateToc() {
       $("#sidebar-toc").empty();
+      if ($(".markdown-body").find("h2,h3,h4,h5,h6").length <= 0) {
+        return;
+      }
       let sidebar = $("#sidebar"),
         app = $("#app"),
         topBtn = $(".back-to-top");
       app.addClass("sidebar-active");
       sidebar.addClass("sidebar-active");
-      topBtn.attr("style", "right: calc(2rem + 250px);");
+      if (document.body.clientWidth <= 768) {
+        topBtn.attr("style", "right: calc(2rem + 200px);");
+      } else {
+        topBtn.attr("style", "right: calc(2rem + 250px);");
+      }
       topBtn.addClass("sidebar-active");
       $(".markdown-body")
         .find("h2,h3,h4,h5,h6")
