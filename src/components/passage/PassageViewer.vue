@@ -106,9 +106,6 @@ export default {
     },
     generateToc() {
       $("#sidebar-toc").empty();
-      if ($(".markdown-body").find("h2,h3,h4,h5,h6").length <= 0) {
-        return;
-      }
       let sidebar = $("#sidebar"),
         app = $("#app"),
         topBtn = $(".back-to-top");

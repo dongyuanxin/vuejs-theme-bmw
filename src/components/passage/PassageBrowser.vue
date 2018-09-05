@@ -60,7 +60,7 @@ export default {
     },
     limit: {
       type: Number,
-      default: 5
+      default: 10
     },
     search: {
       type: Boolean,
