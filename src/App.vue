@@ -10,7 +10,7 @@
     </div>
     <div id="aplayer"></div>
     <aside id="sidebar">
-      <p><span> Table of Contents </span></p>
+      <p id="sidebar-header"></p>
       <ol id="sidebar-toc"></ol>
     </aside>
   </div>

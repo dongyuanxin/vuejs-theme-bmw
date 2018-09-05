@@ -106,6 +106,8 @@ export default {
     },
     generateToc() {
       $("#sidebar-toc").empty();
+      $("#sidebar-header").empty();
+      $("#sidebar-header").append("<span> Table of Contents </span>");
       let sidebar = $("#sidebar"),
         app = $("#app"),
         topBtn = $(".back-to-top");
@@ -136,6 +138,7 @@ export default {
     },
     removeToc() {
       $("#sidebar-toc").empty();
+      $("#sidebar-header").empty();
       $("#sidebar").removeClass("sidebar-active");
       $("#app").removeClass("sidebar-active");
       $(".back-to-top").attr("style", "");
