@@ -2,9 +2,9 @@
   <header>
     <div class="site-brand">
       <h1 class="site-title">
-        <a href="/">GodBMW</a>
+        <a href="https://www.zhihu.com/people/godbmw/" target="_blank">GodBMW &amp; 董沅鑫</a>
       </h1>
-      <p class="site-description">Code is Poetry</p>
+      <p class="site-description">目光露着温暖，心间藏着想念</p>
       <p></p>
     </div>
     <nav class="site-navigation">
@@ -47,10 +47,6 @@ export default {
           name: "GitHub",
           href: "https://github.com/dongyuanxin"
         }
-        // {
-        //   name: "知乎",
-        //   href: "https://www.zhihu.com/people/godbmw/activities"
-        // }
       ]
     };
   }
