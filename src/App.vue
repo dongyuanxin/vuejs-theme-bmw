@@ -117,13 +117,13 @@ export default {
           container: document.querySelector("#aplayer"),
           fixed: true,
           theme: "#ffa081",
-          autoplay: false,
+          autoplay: true,
           listMaxHeight: 90,
           lrcType: 3,
           audio
         });
         ap.on("error", () => ap.pause());
-      }, 1000 * 8);
+      }, 1000 * 6);
     }
   }
 };
