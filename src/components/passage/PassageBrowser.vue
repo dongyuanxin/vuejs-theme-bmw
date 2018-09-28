@@ -123,6 +123,7 @@ export default {
       this.passages = [];
       psgAPI.fetch(this.page, this.limit, true).then(res => {
         this.passages = res;
+        mdAPI.mathJax();
       });
     },
     async fetchByTag(next) {
@@ -137,6 +138,7 @@ export default {
             ? this.passages.concat(morePassages)
             : morePassages; // router query change will cause 2 flush in 'watch:'
           this.nextPage = next ? this.nextPage + 1 : this.nextPage;
+          mdAPI.mathJax();
         } else {
           Hub.$emit("finish-load");
         }
@@ -154,6 +156,7 @@ export default {
             ? this.passages.concat(morePassages)
             : morePassages; // router query change will cause 2 flush in 'watch:'
           this.nextPage = next ? this.nextPage + 1 : this.nextPage;
+          mdAPI.mathJax();
         } else {
           Hub.$emit("finish-load");
         }
@@ -162,6 +165,7 @@ export default {
     async fetchByTime() {
       try {
         this.passages = await psgAPI.fetchByTime(this.searchValue);
+        mdAPI.mathJax();
       } catch (error) {
         this.passages = [];
       }

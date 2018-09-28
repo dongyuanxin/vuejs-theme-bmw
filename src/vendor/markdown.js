@@ -35,4 +35,35 @@ Markdown.prototype.format = function(str, imgUrl) {
   return Marked(replaceImgPath(str, imgUrl));
 };
 
+Markdown.prototype.mathJax = function(delay) {
+  setTimeout(() => {
+    if (window.MathJax) {
+      window.MathJax.Hub.Config({
+        showProcessingMessages: false,
+        messageStyle: "none",
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          preview: [["img", { src: "/images/mypic.jpg" }]],
+          inlineMath: [["$", "$"], ["\\(", "\\)"]],
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+          skipTags: [
+            "script",
+            "noscript",
+            "style",
+            "textarea",
+            "pre",
+            "code",
+            "a"
+          ]
+        },
+        "HTML-CSS": {
+          availableFonts: ["STIX", "TeX"],
+          showMathMenu: false
+        }
+      });
+      window.MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    }
+  }, delay === undefined ? 100 : delay);
+};
+
 export default Markdown;

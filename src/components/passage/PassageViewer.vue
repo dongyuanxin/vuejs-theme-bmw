@@ -99,6 +99,7 @@ export default {
         })
         .then(res => {
           this.psg = res;
+          mdAPI.mathJax();
           if (document.body.clientWidth >= 768) {
             setTimeout(this.generateToc, 500);
           }
