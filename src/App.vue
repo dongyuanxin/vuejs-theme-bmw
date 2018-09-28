@@ -17,6 +17,9 @@
 </template>
 
 <script>
+import "APlayer/dist/APlayer.min.css";
+import APlayer from "APlayer";
+
 import "@/assets/css/base.scss";
 import "@/assets/icon/iconfont.css";
 

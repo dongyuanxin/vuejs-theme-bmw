@@ -10,6 +10,10 @@
 </template>
 
 <script>
+import AV from "leancloud-storage"
+import Valine from 'valine';
+window.AV = AV
+
 import "@/assets/css/article.scss";
 import "@/assets/css/vcomments.scss";
 

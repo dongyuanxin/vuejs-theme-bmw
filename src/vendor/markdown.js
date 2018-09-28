@@ -4,6 +4,31 @@ import hljs from "highlight.js";
 import Marked from "marked";
 import { cdn } from "@/vendor/setting";
 
+let isMathjaxConfig = false;
+
+const initMathjaxConfig = () => {
+  if (!window.MathJax) {
+    return;
+  }
+  window.MathJax.Hub.Config({
+    showProcessingMessages: false,
+    messageStyle: "none",
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [["$", "$"], ["\\(", "\\)"]],
+      displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+      skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"]
+    },
+    "HTML-CSS": {
+      availableFonts: ["STIX", "TeX"],
+      showMathMenu: false
+    }
+  });
+  isMathjaxConfig = true;
+};
+
+initMathjaxConfig();
+
 Marked.setOptions({
   highlight: code => hljs.highlightAuto(code).value
 });
@@ -37,32 +62,19 @@ Markdown.prototype.format = function(str, imgUrl) {
 
 Markdown.prototype.mathJax = function(delay) {
   setTimeout(() => {
-    if (window.MathJax) {
-      window.MathJax.Hub.Config({
-        showProcessingMessages: false,
-        messageStyle: "none",
-        jax: ["input/TeX", "output/HTML-CSS"],
-        tex2jax: {
-          preview: [["img", { src: "/images/mypic.jpg" }]],
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
-          skipTags: [
-            "script",
-            "noscript",
-            "style",
-            "textarea",
-            "pre",
-            "code",
-            "a"
-          ]
-        },
-        "HTML-CSS": {
-          availableFonts: ["STIX", "TeX"],
-          showMathMenu: false
-        }
-      });
-      window.MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    if (!window.MathJax) {
+      return;
     }
+
+    if (isMathjaxConfig === false) {
+      initMathjaxConfig();
+    }
+
+    window.MathJax.Hub.Queue([
+      "Typeset",
+      MathJax.Hub,
+      document.getElementById("app")
+    ]);
   }, delay === undefined ? 100 : delay);
 };
 

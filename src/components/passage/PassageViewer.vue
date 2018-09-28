@@ -42,6 +42,8 @@
   </div>
 </template>
 <script>
+import $ from "jquery";
+
 import "@/assets/css/article.scss";
 
 import Passage from "@/vendor/passage.js";

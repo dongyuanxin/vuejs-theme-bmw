@@ -6,6 +6,10 @@
 </template>
 
 <script>
+import AV from "leancloud-storage"
+import Valine from 'valine';
+window.AV = AV
+
 import Markdown from "@/vendor/markdown.js";
 import Introduct from "@/vendor/introduct.js";
 import "@/assets/css/vcomments.scss";
