@@ -3,6 +3,7 @@ import "highlight.js/styles/atom-one-light.css";
 import hljs from "highlight.js";
 import Marked from "marked";
 import { cdn } from "@/vendor/setting";
+import "@/assets/css/mathjax.scss";
 
 let isMathjaxConfig = false;
 
@@ -60,7 +61,7 @@ Markdown.prototype.format = function(str, imgUrl) {
   return Marked(replaceImgPath(str, imgUrl));
 };
 
-Markdown.prototype.mathJax = function(delay) {
+Markdown.prototype.mathJax = function(ele, delay) {
   setTimeout(() => {
     if (!window.MathJax) {
       return;
@@ -70,11 +71,7 @@ Markdown.prototype.mathJax = function(delay) {
       initMathjaxConfig();
     }
 
-    window.MathJax.Hub.Queue([
-      "Typeset",
-      MathJax.Hub,
-      document.getElementById("app")
-    ]);
+    window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, ele]);
   }, delay === undefined ? 100 : delay);
 };
 

@@ -101,7 +101,7 @@ export default {
         })
         .then(res => {
           this.psg = res;
-          mdAPI.mathJax();
+          mdAPI.mathJax(document.getElementsByClassName("markdown-body"));
           if (document.body.clientWidth >= 768) {
             setTimeout(this.generateToc, 500);
           }
