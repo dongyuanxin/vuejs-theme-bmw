@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import AV from "leancloud-storage"
-import Valine from 'valine';
-window.AV = AV
+import AV from "leancloud-storage";
+import Valine from "valine";
+window.AV = AV;
 
 import Markdown from "@/vendor/markdown.js";
 import Introduct from "@/vendor/introduct.js";
@@ -38,7 +38,7 @@ export default {
       notify: false,
       verify: false,
       avatar: "robohash",
-      placeholder: "话别太骚♪(^∇^*)",
+      placeholder: "正确填写邮箱, 才能及时收到回复哦♪(^∇^*)",
       path: "about"
     });
   },
