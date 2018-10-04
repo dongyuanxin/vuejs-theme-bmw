@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="post">
-      <h3 class="article-title">
+      <h1 class="article-title">
         <span>{{ psg.title }}</span>
-      </h3>
+      </h1>
       <div class="article-top-meta">
         <span>
           发布 : 

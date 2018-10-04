@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="post" v-for="(psg, index) in passages" :key="index">
-      <h3 class="article-title">
+      <h1 class="article-title">
         <router-link :to = "'/passage/' + psg.id">
           <span>{{ psg.title }}</span>
         </router-link>
-      </h3>
+      </h1>
       <div class="article-top-meta">
         <span>
           <router-link :to="{path: '/search', query: {time: psg.createTime.substr(0,10)}}">

@@ -1,9 +1,9 @@
 <template>
   <header>
     <div class="site-brand">
-      <h1 class="site-title">
-        <a href="https://www.zhihu.com/people/godbmw/" target="_blank">GodBMW &amp; 董沅鑫</a>
-      </h1>
+      <div class="site-title">
+        <a href="/">GodBMW &amp; 董沅鑫</a>
+      </div>
       <p class="site-description">目光露着温暖，心间藏着想念</p>
       <p></p>
     </div>
