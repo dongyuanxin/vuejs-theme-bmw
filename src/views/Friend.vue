@@ -93,6 +93,13 @@ export default {
     clear: both;
   }
 }
+
+@media (max-width: 768px) {
+  .friend-navigation {
+    padding-top: 3.5rem;
+  }
+}
+
 .card {
   width: 320px;
   font-size: 1.6rem;
