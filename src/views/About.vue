@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div class="markdown-body" v-html="contentHtml"></div>
+    <a href="#comment" class="comment-anchor"></a>
     <div id="vcomments"></div>
   </div>
 </template>

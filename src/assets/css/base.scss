@@ -68,3 +68,10 @@ a:hover {
   transition: all 0.15s;
   background-color: rgba(0, 0, 0, 0.4);
 }
+
+.comment-anchor {
+  width: 0;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+}

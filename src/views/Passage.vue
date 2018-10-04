@@ -5,7 +5,7 @@
       <router-link :to="'/passage/' + prevId" v-if="showPrevButton">上一篇</router-link>
       <router-link :to="'/passage/' + nextId" v-if="showNextButton">下一篇</router-link>
     </nav>
-    <a href="#comment" id="comment-anchor"></a>
+    <a href="#comment" class="comment-anchor"></a>
     <div id="vcomments"></div>
   </div>
 </template>
@@ -84,9 +84,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-#comment-anchor {
-  display: none;
-}
-</style>
