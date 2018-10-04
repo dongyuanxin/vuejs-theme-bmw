@@ -68,16 +68,21 @@ const router = new Router({
     if (savedPosition) {
       return savedPosition;
     } else {
-      return { x: 0, y: 0 };
+      let position = {};
+      if (to.hash) {
+        position.selector = to.hash;
+      } else {
+        position.x = 0;
+        position.y = 0;
+      }
+      return position;
     }
   }
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.hash) {
-    return {
-      selector: to.hash
-    };
+  if (to.path == from.path && to.hash) {
+    return { selector: to.hash };
   }
   if (to.meta.title) {
     document.title = to.meta.title;
