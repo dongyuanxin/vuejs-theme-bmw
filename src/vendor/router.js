@@ -38,7 +38,7 @@ const router = new Router({
       name: "friend",
       component: () => import("@/views/Friend"),
       meta: {
-        title: "友链 - GODBMW"
+        title: "友链 - 董沅鑫的个人网站"
       }
     },
     {
@@ -46,7 +46,7 @@ const router = new Router({
       name: "about",
       component: () => import("@/views/About"),
       meta: {
-        title: "关于 - GODBMW"
+        title: "关于 - 董沅鑫的个人网站"
       }
     },
     {
@@ -54,7 +54,7 @@ const router = new Router({
       name: "archive",
       component: () => import("@/views/Archive"),
       meta: {
-        title: "分类与标签 - GODBMW"
+        title: "分类与标签 - 董沅鑫的个人网站"
       }
     },
     {
@@ -84,11 +84,11 @@ router.beforeEach((to, from, next) => {
   }
   if (to.name === "search") {
     if (to.query.hasOwnProperty("category")) {
-      document.title = "分类:" + to.query.category + " - GODBMW";
+      document.title = "分类:" + to.query.category + " - 董沅鑫的个人网站";
     } else if (to.query.hasOwnProperty("tag")) {
-      document.title = "标签:" + to.query.tag + " - GODBMW";
+      document.title = "标签:" + to.query.tag + " - 董沅鑫的个人网站";
     } else if (to.query.hasOwnProperty("time")) {
-      document.title = "发布时间:" + to.query.time + " - GODBMW";
+      document.title = "发布时间:" + to.query.time + " - 董沅鑫的个人网站";
     } else {
       return next({
         name: "home"
@@ -96,7 +96,7 @@ router.beforeEach((to, from, next) => {
     }
     return next();
   } else if (to.name === "blog") {
-    document.title = "第" + to.params.page + "页 - GODBMW";
+    document.title = "第" + to.params.page + "页 - 董沅鑫的个人网站";
     return next();
   } else if (to.name === "passage") {
     psgAPI
@@ -107,7 +107,7 @@ router.beforeEach((to, from, next) => {
       })
       .then(res => {
         if (res.hasOwnProperty("title") && res.title.length > 0) {
-          document.title = res.title + " - GODBMW";
+          document.title = res.title + " - 董沅鑫的个人网站";
           return next();
         }
         return next({ name: "home" });
