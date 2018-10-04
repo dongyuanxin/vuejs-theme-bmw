@@ -44,7 +44,7 @@ export default {
   },
   mounted() {
     if (document.body.clientWidth >= 480) {
-      this.playMusic();
+      // this.playMusic();
     }
     let app = document.getElementById("app");
     document.addEventListener("scroll", this.throttle(), false);
@@ -180,7 +180,6 @@ export default {
   margin: 0;
   margin-right: 250px;
   max-width: none;
-  width: calc(100vw - 250px);
 }
 
 #sidebar.sidebar-active {
@@ -190,7 +189,6 @@ export default {
 @media (max-width: 768px) {
   #app.sidebar-active {
     margin-right: 200px;
-    width: calc(100vw - 200px);
   }
   #sidebar.sidebar-active {
     width: 200px;
