@@ -6,11 +6,28 @@
           <span>{{ psg.title }}</span>
         </router-link>
       </h1>
-      <div class="article-top-meta">
+      <div class="article-top-meta pc-view">
         <span>
           <router-link :to="{path: '/search', query: {time: psg.createTime.substr(0,10)}}">
             {{ psg.createTime.substr(0,10) }}
           </router-link>
+        </span>
+      </div>
+      <div class="article-top-meta mobile-view">
+        <span>
+          发布 : 
+          <router-link :to="{path: '/search', query: {time: psg.createTime.substr(0,10)}}">
+            {{ psg.createTime.substr(0,10) }}
+          </router-link>
+        </span>
+        <span>
+          分类 :
+          <router-link :to="{path: '/search', query: {category: psg.category}}">
+            {{ psg.category }}
+          </router-link>
+        </span>
+        <span>
+          浏览 : {{psg.scanTimes + 1}}
         </span>
       </div>
       <div class="article-content">
@@ -18,23 +35,23 @@
       </div>
       <div class="article-footer">
         <div class="article-meta pull-left">
-          <span>
+          <span class="pc-view">
             <i class="iconfont icon-tag"></i>分类:
             <router-link :to="{path: '/search', query: {category: psg.category}}">
               {{psg.category}}
             </router-link>
           </span>
           <span>
-            <i class="iconfont icon-06tags"></i> 标签: # 
+            <i class="iconfont icon-06tags"></i>标签:
             <span v-for="(tag, tagIndex) in psg.tags" :key="tagIndex" class="span--tag">
               <router-link :to="{path: '/search', query: {tag: tag}}">
-                {{ tag }}
+                #{{ tag }} 
               </router-link>
             </span>
           </span>
         </div>
         <div class="article-meta pull-right">
-          <span>
+          <span class="pc-view">
             <i class="iconfont icon-view"></i>浏览: {{psg.scanTimes}}
           </span>
         </div>
@@ -195,6 +212,23 @@ export default {
 .article-content--inner {
   img {
     max-width: 300px !important;
+  }
+}
+
+.pc-view {
+  display: block;
+}
+.mobile-view {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .pc-view {
+    display: none !important;
+  }
+  .mobile-view {
+    display: block !important;
+    font-style: italic !important;
   }
 }
 </style>
