@@ -609,9 +609,7 @@
   padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
-  /* background-color: rgba(27, 31, 35, 0.05); */
   border-radius: 3px;
-  /* color: #c7254e; */
   background-color: #f8f8f8;
   color: #c7254e;
 }
@@ -628,6 +626,7 @@
   white-space: pre;
   background: transparent;
   border: 0;
+  color: #333;
 }
 
 .markdown-body .highlight {
@@ -646,7 +645,7 @@
   font-size: 90%;
   line-height: 1.8;
   background-color: #fafcfc;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 .markdown-body pre code {

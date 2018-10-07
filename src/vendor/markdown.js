@@ -1,6 +1,6 @@
 import "@/assets/css/github-markdown.css";
-import "highlight.js/styles/atom-one-light.css";
-import hljs from "highlight.js";
+import "@/assets/js/prism.js";
+import "@/assets/css/prism.css";
 import Marked from "marked";
 import { cdn } from "@/vendor/setting";
 import "@/assets/css/mathjax.scss";
@@ -31,7 +31,8 @@ const initMathjaxConfig = () => {
 initMathjaxConfig();
 
 Marked.setOptions({
-  highlight: code => hljs.highlightAuto(code).value
+  highlight: (code, lang) =>
+    Prism.highlight(code, Prism.languages[lang || "markup"], lang || "markup")
 });
 
 const replaceImgPath = (str, imgUlr) => {
