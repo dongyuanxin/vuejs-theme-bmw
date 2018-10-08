@@ -38,7 +38,7 @@ export default {
       friends: [],
       content: "",
       page: 1,
-      step: 20
+      step: 50
     };
   },
   mounted() {
