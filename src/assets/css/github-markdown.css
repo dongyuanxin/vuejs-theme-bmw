@@ -11,7 +11,7 @@
   color: #24292e;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 16px;
+  font-size: 1.4rem;
   line-height: 2;
   word-wrap: break-word;
 }
@@ -425,11 +425,12 @@
 }
 
 .markdown-body blockquote {
-  margin: 6rem 2rem;
-  padding-left: 15px;
-  /*padding: 0 1em;*/
-  color: #6a737d;
+  margin: 3rem 0;
+  padding: 15px;
+  color: #555;
   border-left: 0.25em solid #f03838;
+  background: #fafafa;
+  border-radius: 3px;
 }
 
 .markdown-body blockquote > :first-child {
