@@ -3,7 +3,7 @@ $header-level: 6 !default;
 // 导航栏样式
 .page-navigation {
   position: relative;
-  margin: 30px 0;
+  margin: 3rem 0;
   display: flex;
   justify-content: space-around;
 
@@ -30,6 +30,23 @@ $header-level: 6 !default;
   position: relative;
   display: block;
   padding: 7rem 0;
+
+  .copy-right {
+    margin-bottom: 4rem !important;
+
+    blockquote {
+      border-width: 3px !important;
+      border-radius: 0 !important;
+    }
+
+    a {
+      color: #555 !important;
+      text-decoration: none !important;
+      outline: none !important;
+      border-bottom: 1px solid #999 !important;
+      word-wrap: break-word !important;
+    }
+  }
 }
 @media (max-width: 768px) {
   .post {

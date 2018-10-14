@@ -24,6 +24,9 @@
       <div class="article-content">
         <div class="markdown-body" v-html="mdToHtml(psg.content)"></div>
       </div>
+      <div class="copy-right">
+        <div class="markdown-body" v-html="mdToHtml(copyRight)"></div>
+      </div>
       <div class="article-footer">
         <div class="article-meta pull-left">
           <span>
@@ -46,6 +49,7 @@ import $ from "jquery";
 
 import "@/assets/css/article.scss";
 
+import { copyRight } from "@/vendor/setting";
 import Passage from "@/vendor/passage.js";
 import Markdown from "@/vendor/markdown.js";
 
@@ -66,7 +70,8 @@ export default {
         category: "",
         title: "",
         content: ""
-      }
+      },
+      copyRight: copyRight.replace("??", window.location.href)
     };
   },
   mounted() {
@@ -78,6 +83,7 @@ export default {
   watch: {
     id(to, from) {
       if (to === from) return;
+      this.copyRight = copyRight.replace("??", window.location.href);
       this.fetchPassages();
     }
   },
@@ -154,5 +160,9 @@ export default {
 .article-top-meta span {
   color: #9e9e9e;
   font-style: italic;
+}
+
+.post {
+  padding-bottom: 0;
 }
 </style>
