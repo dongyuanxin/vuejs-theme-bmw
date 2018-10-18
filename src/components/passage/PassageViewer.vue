@@ -138,7 +138,7 @@ export default {
           $(item).attr("id", tagID);
           $("#sidebar-toc").append(`
           <li class="toc-${tag}">
-            <a href="#${tagID}">
+            <a href="#${tagID}" target="_self">
               ${tagID}
             </a>
           </li>
