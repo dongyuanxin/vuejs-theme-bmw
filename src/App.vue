@@ -120,9 +120,9 @@ export default {
           container: document.querySelector("#aplayer"),
           fixed: true,
           theme: "#ffa081",
-          autoplay: true,
+          autoplay: false,
           listMaxHeight: 90,
-          lrcType: 3,
+          lrcType: 0,
           audio
         });
         ap.on("error", () => ap.pause());

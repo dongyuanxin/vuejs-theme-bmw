@@ -14,15 +14,8 @@ Friend.prototype.fetch = () => {
         if (res.data.code === 0) {
           resolve(
             res.data.results.map(item => {
-              let { artist, name, url_suffix } = item;
-              return {
-                name,
-                artist,
-                url:
-                  cdn.musicUrl + "/" + artist + "/" + name + "." + url_suffix,
-                cover: cdn.musicUrl + "/" + artist + "/" + name + ".jpg",
-                lrc: cdn.musicUrl + "/" + artist + "/" + name + ".lrc"
-              };
+              let { artist, name, cover_url, music_url } = item;
+              return { name, artist, url: music_url, cover: cover_url };
             })
           );
         } else reject(new Error(res.data.msg));
