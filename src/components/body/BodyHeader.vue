@@ -34,6 +34,14 @@ export default {
           path: "/archive"
         },
         {
+          name: "分类",
+          path: "/category"
+        },
+        {
+          name: "标签",
+          path: "/tag"
+        },
+        {
           name: "友链",
           path: "/friend"
         },
@@ -43,10 +51,10 @@ export default {
         }
       ],
       outsizeNavigations: [
-        {
-          name: "GitHub",
-          href: "https://github.com/dongyuanxin"
-        }
+        // {
+        //   name: "知乎",
+        //   href: "https://github.com/dongyuanxin"
+        // }
       ]
     };
   }

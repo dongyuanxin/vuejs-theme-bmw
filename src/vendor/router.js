@@ -25,11 +25,6 @@ const router = new Router({
       component: () => import("@/views/Blog")
     },
     {
-      path: "/search",
-      name: "search",
-      component: () => import("@/views/Search")
-    },
-    {
       path: "/passage/:id",
       name: "passage",
       component: () => import("@/views/Passage")
@@ -53,9 +48,43 @@ const router = new Router({
     {
       path: "/archive",
       name: "archive",
-      component: () => import("@/views/Archive"),
+      component: () => import("@/views/Archive/Index"),
       meta: {
-        title: "分类与标签 - 董沅鑫的个人网站"
+        title: "归档" + tailTitle
+      }
+    },
+    {
+      path: "/archive/:time",
+      name: "archive-detail",
+      component: () => import("@/views/Archive/Detail"),
+      meta: {
+        title: "归档" + tailTitle
+      }
+    },
+    {
+      path: "/category",
+      name: "category",
+      component: () => import("@/views/Category/Index"),
+      meta: {
+        title: "分类" + tailTitle
+      }
+    },
+    {
+      path: "/category/:category",
+      name: "category-detail",
+      component: () => import("@/views/Category/Detail")
+    },
+    {
+      path: "/tag/:tag",
+      name: "tag-detail",
+      component: () => import("@/views/Tag/Detail")
+    },
+    {
+      path: "/tag",
+      name: "tag",
+      component: () => import("@/views/Tag/Index"),
+      meta: {
+        title: "标签" + tailTitle
       }
     },
     {
@@ -88,18 +117,12 @@ router.beforeEach((to, from, next) => {
     document.title = to.meta.title;
     return next();
   }
-  if (to.name === "search") {
-    if (to.query.hasOwnProperty("category")) {
-      document.title = "分类:" + to.query.category + tailTitle;
-    } else if (to.query.hasOwnProperty("tag")) {
-      document.title = "标签:" + to.query.tag + tailTitle;
-    } else if (to.query.hasOwnProperty("time")) {
-      document.title = "发布时间:" + to.query.time + tailTitle;
-    } else {
-      return next({
-        name: "home"
-      });
-    }
+
+  if (to.name === "category-detail") {
+    document.title = "分类 : " + to.params.category + tailTitle;
+    return next();
+  } else if (to.name === "tag-detail") {
+    document.title = "标签 : " + to.params.tag + tailTitle;
     return next();
   } else if (to.name === "blog") {
     document.title = "第" + to.params.page + "页" + tailTitle;

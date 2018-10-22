@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <passage-browser :page="page" :limit="limit"></passage-browser>
+    <passage-browser :passages="passages"></passage-browser>
     <nav class="page-navigation">
       <router-link :to="'/blog/' + (page - 1)" v-if="showPrevButton">上一页</router-link>
       <router-link :to="'/blog/' + (page + 1)" v-if="showNextButton">下一页</router-link>
@@ -12,8 +12,11 @@
 import "@/assets/css/article.scss";
 
 import PassageBrowser from "@/components/passage/PassageBrowser";
+
+import Markdown from "@/vendor/markdown.js";
 import Passage from "@/vendor/passage.js";
 
+const mdAPI = new Markdown();
 const psgAPI = new Passage();
 
 export default {
@@ -21,19 +24,24 @@ export default {
     return {
       page: 1,
       limit: 10,
-      total: 0,
+      total: -1,
+      passages: [],
       showPrevButton: false,
       showNextButton: false
     };
   },
-  beforeMount() {
+  mounted() {
     this.page = parseInt(this.$route.params.page, 10);
     this.handleButton();
+    this.fetchPassages();
   },
   watch: {
     $route(to, from) {
       this.page = parseInt(this.$route.params.page, 10);
+      this.passages.splice(0);
+
       this.handleButton();
+      this.fetchPassages();
     }
   },
   components: {
@@ -52,6 +60,12 @@ export default {
       } else {
         this.showPrevButton = false;
       }
+    },
+    fetchPassages() {
+      psgAPI.fetch(this.page, this.limit, true).then(res => {
+        this.passages = res;
+        mdAPI.mathJax(document.getElementsByClassName("markdown-body"));
+      });
     }
   }
 };
