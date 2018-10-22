@@ -74,6 +74,7 @@ nav {
   margin-bottom: 2rem;
   font-family: "Open Sans", arial, sans-serif;
   letter-spacing: 0.1em;
+  transition: all 0.1s linear;
 
   .site-title {
     margin: 0;
@@ -103,6 +104,7 @@ nav {
 .site-navigation {
   text-align: center;
   ul {
+    margin: 0 auto;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -119,6 +121,39 @@ nav {
         font-size: 1.6rem;
         line-height: 2rem;
         padding: 0 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+  }
+  .site-brand {
+    text-align: center;
+    font-family: "Lato", "PingFang SC", "Microsoft YaHei", sans-serif;
+
+    .site-title {
+      margin: 0;
+    }
+
+    .site-description {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+  }
+
+  .site-navigation {
+    ul {
+      li {
+        margin: 0.2rem 0.5rem;
+
+        a {
+          font-size: 1.4rem;
+          padding: 0 0.8rem;
+        }
       }
     }
   }
