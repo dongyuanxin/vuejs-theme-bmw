@@ -70,6 +70,14 @@ const router = new Router({
       }
     },
     {
+      path: "/tag",
+      name: "tag",
+      component: () => import("@/views/Tag/Index"),
+      meta: {
+        title: "标签" + tailTitle
+      }
+    },
+    {
       path: "/category/:category",
       name: "category-detail",
       component: () => import("@/views/Category/Detail")
@@ -78,14 +86,6 @@ const router = new Router({
       path: "/tag/:tag",
       name: "tag-detail",
       component: () => import("@/views/Tag/Detail")
-    },
-    {
-      path: "/tag",
-      name: "tag",
-      component: () => import("@/views/Tag/Index"),
-      meta: {
-        title: "标签" + tailTitle
-      }
     },
     {
       path: "*",
