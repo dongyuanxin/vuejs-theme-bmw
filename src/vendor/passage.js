@@ -55,6 +55,18 @@ Passage.prototype.fetchCategoryWithCount = () => {
   });
 };
 
+Passage.prototype.calcCategoryCount = category => {
+  return new Promise((resolve, reject) => {
+    axiosApi
+      .post("/api/passage/category/calc-category-count", { category })
+      .then(res => {
+        if (res.data.code === 0) resolve(res.data.results);
+        else reject(new Error(res.data.msg));
+      })
+      .catch(error => reject(error));
+  });
+};
+
 Passage.prototype.checkPrevAndNext = id => {
   if (typeof id === "string") {
     id = parseInt(id, 10);
@@ -119,6 +131,18 @@ Passage.prototype.fetchTagWithCount = () => {
   return new Promise((resolve, reject) => {
     axiosApi
       .post("/api/tag/fetch-with-count")
+      .then(res => {
+        if (res.data.code === 0) resolve(res.data.results);
+        else reject(new Error(res.data.msg));
+      })
+      .catch(error => reject(error));
+  });
+};
+
+Passage.prototype.calcTagCount = tag => {
+  return new Promise((resolve, reject) => {
+    axiosApi
+      .post("/api/tag/calc-tag-count", { tag })
       .then(res => {
         if (res.data.code === 0) resolve(res.data.results);
         else reject(new Error(res.data.msg));

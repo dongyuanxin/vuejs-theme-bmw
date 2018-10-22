@@ -27,6 +27,7 @@ export default {
   },
   mounted() {
     this.tag = this.$route.params.tag;
+    psgAPI.calcTagCount(this.tag).then(res => (this.total = res));
     this.fetchByTag();
     document.addEventListener("scroll", this.handleScroll, false);
   },

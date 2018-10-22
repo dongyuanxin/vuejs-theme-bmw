@@ -27,6 +27,7 @@ export default {
   },
   mounted() {
     this.category = this.$route.params.category;
+    psgAPI.calcCategoryCount(this.category).then(res => (this.total = res));
     this.fetchByCategory();
     document.addEventListener("scroll", this.handleScroll, false);
   },
