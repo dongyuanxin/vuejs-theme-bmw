@@ -1,6 +1,6 @@
 import axios from "axios";
 import sha256 from "sha256";
-import { server } from "@/vendor/setting";
+import { server, k } from "@/vendor/setting";
 import { generateRandomStr, getOffsetTime } from "@/vendor/util";
 
 function Axios() {}
@@ -19,7 +19,7 @@ Axios.getSign = params => {
     }
   }
   canstring = canstring.substr(0, canstring.length - 1) + params.salt;
-  return sha256(canstring);
+  return sha256(k + canstring);
 };
 
 Axios.prototype.get = (url, data) => {
