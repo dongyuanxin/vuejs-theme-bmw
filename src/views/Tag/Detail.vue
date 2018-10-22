@@ -1,53 +1,45 @@
 <template>
   <div class="container">
-    <passage-browser :passages="passages"></passage-browser>
-    <nav class="page-navigation">
-      <a href="javascript:void(0);" @click.prevent ="fetchByTag" :class="{disabled: finishLoad}">{{buttonMeta}}</a>
-    </nav>
+    <timeline :passages="passages">
+      <span slot="meta">不错！一共有{{total}}篇相关文章！</span>
+      <span slot="title">标签：{{tag}}</span>
+    </timeline>
   </div>
 </template>
 
 <script>
-import "@/assets/css/article.scss";
+import Timeline from "@/components/passage/Timeline";
 
-import Markdown from "@/vendor/markdown.js";
-import PassageBrowser from "@/components/passage/PassageBrowser";
+import { scrollToBottom } from "@/assets/js/dom.js";
 import Passage from "@/vendor/passage.js";
 
-const mdAPI = new Markdown();
 const psgAPI = new Passage();
 
 export default {
   data() {
     return {
       page: 1,
-      limit: 10,
+      limit: 20,
       tag: "",
-      passages: [],
-      finishLoad: false
+      total: " ? ",
+      passages: []
     };
   },
   mounted() {
     this.tag = this.$route.params.tag;
     this.fetchByTag();
+    document.addEventListener("scroll", this.handleScroll, false);
   },
-  watch: {
-    $route(to, from) {
-      this.finishLoad = false;
-      this.tag = this.$route.params.tag;
-      this.passages.splice(0);
-      this.fetchByTag();
-    }
-  },
-  computed: {
-    buttonMeta() {
-      return this.finishLoad ? "加载完毕" : "加载更多";
-    }
+  beforeDestroy() {
+    document.removeEventListener("scroll", this.handleScroll, false);
   },
   components: {
-    PassageBrowser
+    Timeline
   },
   methods: {
+    handleScroll() {
+      scrollToBottom(this.fetchByTag);
+    },
     async fetchByTag() {
       try {
         let morePassages = await psgAPI.fetchByTag(
@@ -55,30 +47,23 @@ export default {
           this.page,
           this.limit
         );
-        if (morePassages.length > 0) {
-          this.passages = this.passages.concat(morePassages);
-          this.page += 1;
-          mdAPI.mathJax(document.getElementsByClassName("markdown-body"));
-        } else {
-          this.finishLoad = true;
+        this.page += 1;
+        if (morePassages.length === 0) {
+          document.removeEventListener("scroll", this.handleScroll, false);
+          return;
         }
-      } catch (error) {}
+        this.passages = this.passages.concat(morePassages);
+      } catch (error) {
+        document.removeEventListener("scroll", this.handleScroll, false);
+      }
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.disabled {
-  background-color: #f5f7fa;
-  border-color: #e4e7ed;
-  color: #c0c4cc;
-  cursor: not-allowed;
-}
-
-.disabled:hover {
-  background-color: #f5f7fa;
-  border-color: #e4e7ed;
-  color: #c0c4cc;
+.container {
+  padding-top: 50px;
+  font-size: 1.4rem;
 }
 </style>
