@@ -85,6 +85,34 @@ const router = new Router({
       component: () => import("@/views/Tag/Detail")
     },
     {
+      path: "/search",
+      name: "search",
+      redirect: to => {
+        if (to.query.hasOwnProperty("time")) {
+          return {
+            name: "archive-detail",
+            params: {
+              time: to.query.time
+            }
+          };
+        } else if (to.query.hasOwnProperty("category")) {
+          return {
+            name: "category-detail",
+            params: { category: to.query.category },
+            query: {}
+          };
+        } else if (to.query.hasOwnProperty("tag")) {
+          return {
+            name: "tag-detail",
+            params: { tag: to.query.tag },
+            query: {}
+          };
+        } else {
+          return { name: "archive", query: {} };
+        }
+      }
+    },
+    {
       path: "*",
       name: "error",
       redirect: "/"
