@@ -56,10 +56,7 @@ const router = new Router({
     {
       path: "/archive/:time",
       name: "archive-detail",
-      component: () => import("@/views/Archive/Detail"),
-      meta: {
-        title: "归档" + tailTitle
-      }
+      component: () => import("@/views/Archive/Detail")
     },
     {
       path: "/category",
@@ -118,7 +115,10 @@ router.beforeEach((to, from, next) => {
     return next();
   }
 
-  if (to.name === "category-detail") {
+  if (to.name === "archive-detail") {
+    document.title = "发布时间 : " + to.params.time.slice(0, 10) + tailTitle;
+    return next();
+  } else if (to.name === "category-detail") {
     document.title = "分类 : " + to.params.category + tailTitle;
     return next();
   } else if (to.name === "tag-detail") {
