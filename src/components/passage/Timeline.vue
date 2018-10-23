@@ -98,6 +98,7 @@ export default {
     transition: all 0.15s linear;
 
     &::before {
+      transition: all 0.15s linear;
       content: " ";
       position: absolute;
       top: 8px;
@@ -129,16 +130,18 @@ export default {
       left: 20px;
       top: 5px;
     }
-  }
-}
 
-.posts-collapse:hover {
-  border-bottom-color: #fc6868;
-  h2 a {
-    color: #fc6868;
-  }
-  &::before {
-    color: #222;
+    &:hover {
+      border-bottom-color: #fc6868;
+      &::before {
+        background: #fc6868;
+      }
+      h2 {
+        a {
+          color: #222;
+        }
+      }
+    }
   }
 }
 </style>
