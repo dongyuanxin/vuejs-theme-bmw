@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <second-header></second-header>
-    <!-- <body-header></body-header> -->
+    <body-header></body-header>
     <router-view/>
     <body-footer></body-footer>
     <div class="back-to-top" :class="{hidden : hidenBtn}" @click="backToTop">
@@ -26,7 +25,6 @@ import "@/assets/icon/iconfont.css";
 
 import BodyFooter from "@/components/body/BodyFooter.vue";
 import BodyHeader from "@/components/body/BodyHeader.vue";
-import SecondHeader from "@/components/body/BodyHeader2.vue";
 
 import Music from "@/vendor/music.js";
 
@@ -36,8 +34,7 @@ export default {
   name: "App",
   components: {
     BodyHeader,
-    BodyFooter,
-    SecondHeader
+    BodyFooter
   },
   data() {
     return {
@@ -47,7 +44,7 @@ export default {
   },
   mounted() {
     if (document.body.clientWidth >= 480) {
-      // this.playMusic();
+      this.playMusic();
     }
     let app = document.getElementById("app");
     document.addEventListener("scroll", this.throttle(), false);
@@ -137,8 +134,8 @@ export default {
 
 <style lang="scss" scoped>
 #app {
-  // max-width: 1170px; /* max-width 可以兼容手机屏幕 */
   margin: 0 auto;
+  margin-top: 54px;
   background-color: white;
   padding: 5rem 2rem 1rem;
   transition: 0.15s;

@@ -86,6 +86,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+  padding-top: 50px;
+}
 .page-navigation {
   margin: 5rem 0;
 }

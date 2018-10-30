@@ -87,7 +87,7 @@ export default {
 
 <style lang="scss" scoped>
 .friend-navigation {
-  padding: 8rem 0 3.5rem;
+  padding: 0 0 3.5rem;
   &::after {
     content: " ";
     display: block;

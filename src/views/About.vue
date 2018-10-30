@@ -74,7 +74,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  padding-top: 6rem;
+  // padding-top: 6rem;
 }
 
 @media (max-width: 768px) {

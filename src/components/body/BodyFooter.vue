@@ -58,6 +58,8 @@ footer {
   line-height: 1.8;
   padding-top: 1rem;
   color: #9e9e9e;
+  background: #f7f7f7;
+  margin: 0 -20px;
 }
 
 p.site-info {
@@ -65,9 +67,11 @@ p.site-info {
   color: #9e9e9e;
   font-size: 1.1rem;
   margin: 0.5rem 0;
+  line-height: 2;
 
   a {
-    color: #f03838;
+    color: #1abc9c;
+    border-bottom: 1px solid #1abc9c;
   }
 }
 

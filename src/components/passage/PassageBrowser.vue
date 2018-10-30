@@ -9,6 +9,7 @@
       <!-- PC端文章信息 -->
       <div class="article-top-meta pc-view">
         <span>
+          发布时间 : 
           <router-link :to="{name: 'archive-detail', params: {time: psg.createTime.substr(0,10)}}">
             {{ psg.createTime.substr(0,10) }}
           </router-link>

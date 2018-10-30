@@ -2,18 +2,21 @@
   <header>
     <div class="site-brand">
       <div class="site-title">
-        <a href="/">GODBMW</a>
+        <a href="/">GODBMW.com</a>
       </div>
-      <p class="site-description">目光露着温暖，心间藏着想念</p>
-      <p></p>
+      <!-- <p class="site-description">目光露着温暖，心间藏着想念</p> -->
     </div>
     <nav class="site-navigation">
-      <ul>
-        <li v-for="(link, index) in insiteNavigations" :key="index">
-          <router-link :to="link.path">{{ link.name }}</router-link>
-        </li>
-        <li v-for="(link, index) in outsizeNavigations" :key="index+insiteNavigations.length">
-          <a :href="link.href" target="_blank">{{ link.name }}</a>
+      <ul class="nav-menu">
+        <li class="nav-item" v-for="(link, index) in insiteNavigations" :key="index" @mouseover="checkedItemIndex = index" @mouseleave="checkedItemIndex = -1" >
+          <router-link :to="link.path" v-if="link.children.length === 0">{{ link.name }}</router-link>
+          <a href="javascript:void(0);" v-else>{{link.name}}</a>
+          <ul class="nav-menu--dropdown" :class="{active: checkedItemIndex === index}" v-if="link.children.length !== 0">
+            <li v-for="(childrenLink, childrenIndex) in link.children" :key="childrenIndex">
+              <router-link :to="childrenLink.path" v-if="childrenLink.blank === false">{{ childrenLink.name }}</router-link>
+              <a :href="childrenLink.path" target="_blank" v-else>{{childrenLink.name}}</a>
+            </li>
+          </ul>
         </li>
       </ul>
     </nav>
@@ -24,37 +27,110 @@
 export default {
   data() {
     return {
+      checkedItemIndex: -1,
       insiteNavigations: [
         {
           name: "主页",
-          path: "/"
+          path: "/",
+          blank: false,
+          children: []
+        },
+        {
+          name: "教程",
+          path: "",
+          blank: true,
+          children: [
+            {
+              name: "Webpack4 系列",
+              path: "/category/webpack4%20系列教程",
+              blank: false
+            },
+            {
+              name: "每天一个设计模式",
+              path: "/category/每天一个设计模式",
+              blank: false
+            }
+          ]
         },
         {
           name: "归档",
-          path: "/archive"
+          path: "/archive",
+          blank: false,
+          children: []
         },
         {
           name: "分类",
-          path: "/category"
+          path: "/category",
+          blank: false,
+          children: []
         },
         {
           name: "标签",
-          path: "/tag"
+          path: "/tag",
+          blank: false,
+          children: []
         },
         {
           name: "友链",
-          path: "/friend"
+          path: "/friend",
+          blank: false,
+          children: []
         },
         {
           name: "关于",
-          path: "/about"
+          path: "/about",
+          blank: false,
+          children: []
+        },
+        {
+          name: "开源",
+          path: "",
+          blank: true,
+          children: [
+            {
+              name: "Music API Next",
+              path: "https://github.com/dongyuanxin",
+              blank: true
+            },
+            {
+              name: "Webpack Demos",
+              path: "https://github.com/dongyuanxin/webpack-demos",
+              blank: true
+            }
+          ]
+        },
+        {
+          name: "抓到我",
+          path: "",
+          blank: true,
+          children: [
+            {
+              name: "GitHub",
+              path: "https://github.com/dongyuanxin",
+              blank: true
+            },
+            {
+              name: "SegmentFault",
+              path: "https://segmentfault.com/u/godbmw",
+              blank: true
+            },
+            {
+              name: "知乎",
+              path: "https://www.zhihu.com/people/godbmw/activities",
+              blank: true
+            },
+            {
+              name: "掘金",
+              path: "https://juejin.im/user/5b91fcf06fb9a05d3c7fd4a5",
+              blank: true
+            },
+            {
+              name: "简书",
+              path: "https://www.jianshu.com/u/d1570f4a618a",
+              blank: true
+            }
+          ]
         }
-      ],
-      outsizeNavigations: [
-        // {
-        //   name: "知乎",
-        //   href: "https://github.com/dongyuanxin"
-        // }
       ]
     };
   }
@@ -63,99 +139,119 @@ export default {
 
 <style lang="scss" scoped>
 header {
-  line-height: 1.8rem;
   display: block;
+  position: fixed;
+  left: 50%;
+  top: 0;
+  right: 0;
+  z-index: 900;
+  width: 100vw;
+  box-shadow: 0 5px 4px -4px rgba(25, 25, 25, 0.1);
+  color: #888;
+  background: white;
+  transform: translateX(-50%);
+
+  .site-brand {
+    float: left;
+    height: 54px;
+    padding-left: 10vw;
+  }
+
+  .site-navigation {
+    float: right;
+    height: 54px;
+    padding-right: 10vw;
+  }
+
+  &::after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
 }
-nav {
-  display: block;
-}
+
 .site-brand {
   text-align: center;
-  margin-bottom: 2rem;
-  font-family: "Open Sans", arial, sans-serif;
-  letter-spacing: 0.1em;
   transition: all 0.1s linear;
+  line-height: 54px;
+  position: relative;
 
   .site-title {
     margin: 0;
-    font-size: 1.4rem;
+    font-size: 2rem;
+    transition: all 0.1s linear;
     a {
+      transition: all 0.1s linear;
       display: inline-block;
-      color: #fff;
-      font-weight: bolder;
-      background-color: #f03838;
-      line-height: 3rem;
-      height: 3rem;
-      padding: 0 1rem;
-      transition: padding 0.3s ease-out;
-    }
-    a:hover {
-      padding: 0 1.5rem;
+      color: #000;
+      font-weight: 333;
+      font-family: "Sakura";
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
     }
   }
 
   .site-description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
     text-transform: uppercase;
     color: #9e9e9e;
-    font-size: 1.3rem;
-    margin: 1.5rem 0 0;
+    font-size: 1rem;
   }
 }
+
 .site-navigation {
   text-align: center;
-  ul {
-    margin: 0 auto;
+  height: 54px;
+  line-height: 54px;
+
+  ul.nav-menu {
     list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 1.6em;
+    font-size: 1.4em;
     display: block;
 
-    li {
+    li.nav-item {
       display: inline-block;
-      margin: 0 0.5rem;
+      margin: 0 1.4rem;
+      position: relative;
 
       a {
         display: block;
-        color: #f03838;
-        font-size: 1.6rem;
-        line-height: 2rem;
-        padding: 0 1rem;
-      }
-    }
-  }
-}
+        transition: all 0.1s linear;
+        color: #888;
 
-@media (max-width: 768px) {
-  header {
-    margin-left: -1.5rem;
-    margin-right: -1.5rem;
-  }
-  .site-brand {
-    text-align: center;
-    font-family: "Lato", "PingFang SC", "Microsoft YaHei", sans-serif;
-
-    .site-title {
-      margin: 0;
-    }
-
-    .site-description {
-      font-size: 1.2rem;
-      margin-top: 1rem;
-    }
-  }
-
-  .site-navigation {
-    ul {
-      li {
-        margin: 0.2rem 0.5rem;
-
-        a {
-          font-size: 1.4rem;
-          padding: 0 0.8rem;
+        &:hover {
+          color: #222;
         }
       }
     }
+  }
+
+  ul.nav-menu--dropdown {
+    position: absolute;
+    top: 53px;
+    left: 50%;
+    list-style: none;
+    text-align: center;
+    transform: translateX(-50%);
+    overflow: hidden;
+    width: 0;
+    transition: all 0.05s linear;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+
+    li {
+      background: white;
+      height: 35px;
+      line-height: 35px;
+    }
+  }
+
+  ul.nav-menu--dropdown.active {
+    width: 130px;
+    box-shadow: 0px 2px 3px rgba(25, 25, 25, 0.1);
   }
 }
 </style>

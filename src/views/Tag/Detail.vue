@@ -64,7 +64,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  padding-top: 50px;
+  // padding-top: 50px;
   font-size: 1.4rem;
 }
 </style>

@@ -56,7 +56,7 @@ export default {
     text-align: center;
     font-size: 1.8rem;
     font-weight: 500;
-    margin: 3rem 0 2rem;
+    margin: 0 0 2rem;
   }
 }
 
