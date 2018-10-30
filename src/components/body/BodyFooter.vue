@@ -59,14 +59,14 @@ footer {
   padding-top: 1rem;
   color: #9e9e9e;
   background: #f7f7f7;
-  margin: 0 -30px;
+  margin: 0 calc(-2rem - 15px);
 }
 
 p.site-info {
   display: block;
   color: #9e9e9e;
   font-size: 1.1rem;
-  margin: 0.5rem 0;
+  margin: 0;
   line-height: 2.4;
 
   a {
@@ -79,5 +79,11 @@ p.site-info {
   animation: my-face 5s infinite ease-in-out;
   display: inline-block;
   margin: 0 5px;
+}
+
+@media (max-width: 768px) {
+  footer {
+    margin: 0 -1.5rem;
+  }
 }
 </style>

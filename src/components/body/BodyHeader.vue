@@ -1,26 +1,27 @@
 <template>
-  <header>
-    <div class="site-brand">
-      <div class="site-title">
-        <a href="/">GODBMW.com</a>
+  <div class="header-wrap">
+    <header>
+      <div class="site-brand">
+        <div class="site-title">
+          <a href="/">GODBMW.com</a>
+        </div>
       </div>
-      <!-- <p class="site-description">目光露着温暖，心间藏着想念</p> -->
-    </div>
-    <nav class="site-navigation">
-      <ul class="nav-menu">
-        <li class="nav-item" v-for="(link, index) in insiteNavigations" :key="index" @mouseover="checkedItemIndex = index" @mouseleave="checkedItemIndex = -1" >
-          <router-link :to="link.path" v-if="link.children.length === 0">{{ link.name }}</router-link>
-          <a href="javascript:void(0);" v-else>{{link.name}}</a>
-          <ul class="nav-menu--dropdown" :class="{active: checkedItemIndex === index}" v-if="link.children.length !== 0">
-            <li v-for="(childrenLink, childrenIndex) in link.children" :key="childrenIndex">
-              <router-link :to="childrenLink.path" v-if="childrenLink.blank === false">{{ childrenLink.name }}</router-link>
-              <a :href="childrenLink.path" target="_blank" v-else>{{childrenLink.name}}</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </header>
+      <nav class="site-navigation">
+        <ul class="nav-menu">
+          <li class="nav-item" v-for="(link, index) in insiteNavigations" :key="index" @mouseover="checkedItemIndex = index" @mouseleave="checkedItemIndex = -1" >
+            <router-link :to="link.path" v-if="link.children.length === 0">{{ link.name }}</router-link>
+            <a href="javascript:void(0);" v-else>{{link.name}}</a>
+            <ul class="nav-menu--dropdown" :class="{active: checkedItemIndex === index}" v-if="link.children.length !== 0">
+              <li v-for="(childrenLink, childrenIndex) in link.children" :key="childrenIndex">
+                <router-link :to="childrenLink.path" v-if="childrenLink.blank === false">{{ childrenLink.name }}</router-link>
+                <a :href="childrenLink.path" target="_blank" v-else>{{childrenLink.name}}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  </div>
 </template>
 
 <script>
@@ -138,29 +139,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-header {
+.header-wrap {
   display: block;
   position: fixed;
-  left: 50%;
+  left: 0;
   top: 0;
-  right: 0;
   z-index: 900;
   width: calc(100vw + 15px);
   box-shadow: 0 5px 4px -4px rgba(25, 25, 25, 0.1);
   color: #888;
   background: white;
-  transform: translateX(-50%);
+}
 
+header {
+  display: block;
+  width: 960px;
+  margin: 0 auto;
   .site-brand {
     float: left;
     height: 54px;
-    padding-left: 10vw;
   }
 
   .site-navigation {
     float: right;
     height: 54px;
-    padding-right: 10vw;
   }
 
   &::after {
@@ -190,15 +192,6 @@ header {
       font-family: "Sakura";
       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
     }
-  }
-
-  .site-description {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    text-transform: uppercase;
-    color: #9e9e9e;
-    font-size: 1rem;
   }
 }
 
@@ -254,6 +247,39 @@ header {
     box-shadow: 0px 2px 3px rgba(25, 25, 25, 0.1);
   }
 }
+
+@media (max-width: 960px) {
+  .header-wrap {
+    width: 100vw;
+  }
+  header {
+    width: 100%;
+    .site-brand {
+      padding-left: 1rem;
+    }
+    .site-navigation {
+      padding-right: 1rem;
+    }
+  }
+}
+
+// @media (max-width: 768px) {
+//   header {
+//     height: 54px;
+//     .site-brand {
+//       float: none;
+//     }
+//     .site-navigation {
+//       padding: 0 1rem;
+//       float: none;
+//       ul.nav-menu {
+//         li.nav-item {
+//           display: block;
+//         }
+//       }
+//     }
+//   }
+// }
 </style>
 
 

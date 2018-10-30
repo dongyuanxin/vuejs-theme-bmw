@@ -73,16 +73,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  // padding-top: 6rem;
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding-top: 4rem;
-  }
-}
-
 .markdown-body {
   margin-bottom: 3rem;
 }

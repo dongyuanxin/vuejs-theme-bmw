@@ -137,14 +137,14 @@ export default {
   margin: 0 auto;
   margin-top: 54px;
   background-color: white;
-  padding: 5rem 2rem 1rem;
+  padding: 5rem 2rem 0;
   transition: 0.15s;
   position: relative;
 }
 
 @media (max-width: 768px) {
   #app {
-    padding: 2.5rem 1.5rem 0.5rem;
+    padding: 2.5rem 1.5rem 0;
   }
 }
 
