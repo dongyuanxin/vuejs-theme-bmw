@@ -59,7 +59,7 @@ footer {
   padding-top: 1rem;
   color: #9e9e9e;
   background: #f7f7f7;
-  margin: 0 -20px;
+  margin: 0 -30px;
 }
 
 p.site-info {
@@ -67,7 +67,7 @@ p.site-info {
   color: #9e9e9e;
   font-size: 1.1rem;
   margin: 0.5rem 0;
-  line-height: 2;
+  line-height: 2.4;
 
   a {
     color: #1abc9c;

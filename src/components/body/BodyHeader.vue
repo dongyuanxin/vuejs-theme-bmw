@@ -145,7 +145,7 @@ header {
   top: 0;
   right: 0;
   z-index: 900;
-  width: 100vw;
+  width: calc(100vw + 15px);
   box-shadow: 0 5px 4px -4px rgba(25, 25, 25, 0.1);
   color: #888;
   background: white;
