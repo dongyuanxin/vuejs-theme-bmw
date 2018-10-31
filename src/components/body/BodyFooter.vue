@@ -3,6 +3,8 @@
     <p class="site-info">
       博客已萌萌哒运行{{ timeStr }}<span class="my-face">(●'◡'●)ﾉ♥</span>
       <br>
+      Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">董沅鑫</a>
+      <br>
       <a href="https://www.google.com/analytics/" target="_blank">Google Analytics</a> 提供网站统计服务. 
       <a href="https://cloud.tencent.com/" target="_blank">Tencent Cloud</a> 提供CDN服务. 
       <a href="https://sg.godaddy.com/"  target="_blank">GoDaddy</a> 提供域名注册服务. 
@@ -12,8 +14,6 @@
       运行于 <a href="https://cloud.tencent.com/" target="_blank">Tencent Cloud</a> 云服务器. 
       <a href="https://www.trustasia.com/" target="_blank">TrustAsia</a> 签发SSL证书. 
       <a href="http://www.miibeian.gov.cn/state/outPortal/loginPortal.action" target="_blank">粤ICP备18028400号</a> .
-      <br>
-      Vesion is v4.0. Made by 💗GodBMW( <a href="https://github.com/dongyuanxin">董沅鑫</a> ).
     </p>
   </footer>
 </template>

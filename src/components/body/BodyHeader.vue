@@ -93,12 +93,17 @@ export default {
           blank: true,
           children: [
             {
-              name: "多平台音乐API",
-              path: "https://github.com/dongyuanxin",
+              name: "Theme BMW",
+              path: "https://github.com/dongyuanxin/theme-bmw",
               blank: true
             },
             {
-              name: "Webpack4 源码",
+              name: "Music API",
+              path: "https://github.com/dongyuanxin/music-api-next",
+              blank: true
+            },
+            {
+              name: "Webpack4 Demos",
               path: "https://github.com/dongyuanxin/webpack-demos",
               blank: true
             },
@@ -110,6 +115,19 @@ export default {
             {
               name: "ONE BOOK",
               path: "https://github.com/dongyuanxin/onebook",
+              blank: true
+            }
+          ]
+        },
+        {
+          name: "合作",
+          path: "",
+          blank: false,
+          children: [
+            {
+              name: "WEB前端教室",
+              path:
+                "https://mp.weixin.qq.com/mp/homepage?__biz=MzA3NDE5ODUzNA%3D%3D&hid=6&sn=653a847f8dbe14701d4342329383cb7e",
               blank: true
             }
           ]
@@ -151,8 +169,8 @@ export default {
   },
   watch: {
     $route(to, from) {
-      this.checkedItemIndex = -1
-      this.showMobileNav = false
+      this.checkedItemIndex = -1;
+      this.showMobileNav = false;
     }
   }
 };
@@ -194,7 +212,7 @@ header {
   }
 
   .iconfont.icon-menu {
-    display: none;  
+    display: none;
   }
 }
 
@@ -297,7 +315,7 @@ header {
     }
 
     .site-navigation {
-      clear:both;
+      clear: both;
       float: none;
       height: 0;
       overflow-y: auto;
@@ -307,7 +325,7 @@ header {
       left: 0;
       width: 100vw;
       background: white;
-      transition: height .1s linear;
+      transition: height 0.1s linear;
     }
 
     .site-navigation.active {
@@ -317,7 +335,7 @@ header {
     .iconfont.icon-menu {
       display: inline;
       position: absolute;
-      right : 10px;
+      right: 10px;
       top: 50%;
       transform: translateY(-50%);
       font-size: 3rem;
@@ -367,7 +385,7 @@ header {
         margin-left: 20px;
         height: 35px;
         line-height: 35px;
-        margin-top: -1px
+        margin-top: -1px;
       }
     }
 
