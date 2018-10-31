@@ -178,7 +178,6 @@ export default {
 }
 
 #app.sidebar-active {
-  margin: 0;
   margin-right: 250px;
   max-width: none;
 }

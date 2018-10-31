@@ -3,7 +3,7 @@
     <header>
       <div class="site-brand">
         <div class="site-title">
-          <a href="/">GODBMW.com</a>
+          <router-link to="/">GODBMW.com</router-link>
         </div>
       </div>
       <nav :class="{'site-navigation':true, 'active': showMobileNav}">
@@ -138,6 +138,12 @@ export default {
         }
       ]
     };
+  },
+  watch: {
+    $route(to, from) {
+      this.checkedItemIndex = -1
+      this.showMobileNav = false
+    }
   }
 };
 </script>
