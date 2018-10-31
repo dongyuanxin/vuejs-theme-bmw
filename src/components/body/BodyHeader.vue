@@ -392,6 +392,7 @@ header {
     ul.nav-menu--dropdown.active {
       display: block;
       box-shadow: none;
+      width: auto;
     }
   }
 }

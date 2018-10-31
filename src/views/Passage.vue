@@ -159,8 +159,6 @@ export default {
 
 }
 
-
-
 .comment-title {
   margin: 8rem 0 1.4rem;
   font-size: 2rem;
