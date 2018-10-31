@@ -93,13 +93,23 @@ export default {
           blank: true,
           children: [
             {
-              name: "Music API Next",
+              name: "多平台音乐API",
               path: "https://github.com/dongyuanxin",
               blank: true
             },
             {
-              name: "Webpack Demos",
+              name: "Webpack4 源码",
               path: "https://github.com/dongyuanxin/webpack-demos",
+              blank: true
+            },
+            {
+              name: "金融情感模型",
+              path: "https://github.com/dongyuanxin/news-emotion",
+              blank: true
+            },
+            {
+              name: "ONE BOOK",
+              path: "https://github.com/dongyuanxin/onebook",
               blank: true
             }
           ]
@@ -293,7 +303,7 @@ header {
       overflow-y: auto;
       position: fixed;
       z-index: 900;
-      top: 55px;
+      top: 54px;
       left: 0;
       width: 100vw;
       background: white;
@@ -357,6 +367,7 @@ header {
         margin-left: 20px;
         height: 35px;
         line-height: 35px;
+        margin-top: -1px
       }
     }
 

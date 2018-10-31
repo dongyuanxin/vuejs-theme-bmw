@@ -41,7 +41,7 @@ export default {
     },
     fetchPassages() {
       psgAPI
-        .fetch(this.page, this.limit, true)
+        .fetchForTimeline(this.page, this.limit)
         .then(res => {
           this.page += 1;
           if (res.length === 0) {
@@ -60,7 +60,6 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  // padding-top: 50px;
   font-size: 1.4rem;
 }
 </style>

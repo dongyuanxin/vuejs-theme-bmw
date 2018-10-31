@@ -15,7 +15,8 @@ $header-level: 6 !default;
     height: 26px;
     padding: 0 14px;
     border-radius: 2px;
-    transition-duration: 0.4s;
+    transition-duration: 0.2s;
+    text-align: center;
   }
 
   a:hover {
@@ -40,6 +41,7 @@ $header-level: 6 !default;
     blockquote {
       border-width: 3px !important;
       border-radius: 0 !important;
+      border-color: #f03838 !important;
     }
 
     a {
