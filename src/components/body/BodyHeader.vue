@@ -6,9 +6,11 @@
           <a href="/">GODBMW.com</a>
         </div>
       </div>
-      <nav class="site-navigation">
+      <nav :class="{'site-navigation':true, 'active': showMobileNav}">
         <ul class="nav-menu">
-          <li class="nav-item" v-for="(link, index) in insiteNavigations" :key="index" @mouseover="checkedItemIndex = index" @mouseleave="checkedItemIndex = -1" >
+          <li class="nav-item" v-for="(link, index) in insiteNavigations" :key="index" 
+          @mouseenter="checkedItemIndex = index"
+          @mouseleave="checkedItemIndex = -1" >
             <router-link :to="link.path" v-if="link.children.length === 0">{{ link.name }}</router-link>
             <a href="javascript:void(0);" v-else>{{link.name}}</a>
             <ul class="nav-menu--dropdown" :class="{active: checkedItemIndex === index}" v-if="link.children.length !== 0">
@@ -20,6 +22,7 @@
           </li>
         </ul>
       </nav>
+      <i class="iconfont icon-menu" @click="showMobileNav = !showMobileNav"></i>
     </header>
   </div>
 </template>
@@ -29,6 +32,7 @@ export default {
   data() {
     return {
       checkedItemIndex: -1,
+      showMobileNav: false,
       insiteNavigations: [
         {
           name: "主页",
@@ -172,6 +176,10 @@ header {
     clear: both;
     visibility: hidden;
   }
+
+  .iconfont.icon-menu {
+    display: none;  
+  }
 }
 
 .site-brand {
@@ -263,23 +271,95 @@ header {
   }
 }
 
-// @media (max-width: 768px) {
-//   header {
-//     height: 54px;
-//     .site-brand {
-//       float: none;
-//     }
-//     .site-navigation {
-//       padding: 0 1rem;
-//       float: none;
-//       ul.nav-menu {
-//         li.nav-item {
-//           display: block;
-//         }
-//       }
-//     }
-//   }
-// }
+@media (max-width: 767px) {
+  header {
+    position: relative;
+    .site-brand {
+      float: left;
+      display: block;
+      height: 54px;
+    }
+
+    .site-navigation {
+      clear:both;
+      float: none;
+      height: 0;
+      overflow-y: auto;
+      position: fixed;
+      z-index: 900;
+      top: 55px;
+      left: 0;
+      width: 100vw;
+      background: white;
+      transition: height .1s linear;
+    }
+
+    .site-navigation.active {
+      height: calc(100vh - 54px);
+    }
+
+    .iconfont.icon-menu {
+      display: inline;
+      position: absolute;
+      right : 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3rem;
+      color: #333;
+    }
+  }
+
+  .site-navigation {
+    text-align: left;
+    height: 40px;
+    line-height: 40px;
+
+    ul.nav-menu {
+      list-style: none;
+      font-size: 1.4em;
+      display: block;
+
+      li.nav-item {
+        display: block;
+        margin: 0 1.4rem;
+        position: relative;
+
+        a {
+          display: block;
+          transition: all 0.1s linear;
+          color: #888;
+
+          &:hover {
+            color: #222;
+          }
+        }
+      }
+    }
+
+    ul.nav-menu--dropdown {
+      position: static;
+      list-style: none;
+      text-align: left;
+      transform: translateX(0);
+      overflow: hidden;
+      transition: all 0.05s linear;
+      border: none;
+      box-shadow: none;
+      display: none;
+
+      li {
+        margin-left: 20px;
+        height: 35px;
+        line-height: 35px;
+      }
+    }
+
+    ul.nav-menu--dropdown.active {
+      display: block;
+      box-shadow: none;
+    }
+  }
+}
 </style>
 
 
