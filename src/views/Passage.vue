@@ -114,12 +114,12 @@ export default {
     clear: both;
     visibility: hidden;
   }
-  
+
   div {
     padding: 10px 0 0 0;
     width: 45%;
     overflow: hidden;
-    text-overflow:ellipsis;
+    text-overflow: ellipsis;
     white-space: nowrap;
 
     .iconfont {
@@ -127,12 +127,12 @@ export default {
       top: 50%;
       transform: tranlate(0, -50%);
       font-weight: bolder;
-      font-size: .8em;
+      font-size: 0.8em;
     }
 
     a {
       line-height: 2.5rem;
-      transition: all .1s linear;
+      transition: all 0.1s linear;
       color: #555;
 
       &:hover {
@@ -150,13 +150,13 @@ export default {
   }
 
   div.nav-next {
-    float:right;
-    padding-right: 1rem;  
+    float: right;
+    text-align: right;
+    padding-right: 1rem;
     .iconfont {
       right: 0;
     }
   }
-
 }
 
 .comment-title {
