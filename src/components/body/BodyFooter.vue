@@ -56,7 +56,7 @@ footer {
   position: relative;
   text-align: center;
   line-height: 1.8;
-  padding-top: 1rem;
+  padding: 1rem 0;
   color: #9e9e9e;
   background: #f7f7f7;
   margin: 0 calc(-2rem - 15px);
