@@ -11,8 +11,9 @@ const scrollToBottom = callback => {
       clientHeight =
         document.documentElement.clientHeight || document.body.clientHeight;
     if (scrollTop + clientHeight + 10 >= scrollHeight) {
-      callback();
-      setTimeout(() => (isRunning = false), 2000);
+      callback()
+        .then(resolve => (isRunning = false))
+        .catch(error => (isRunning = false));
       return;
     }
     isRunning = false;

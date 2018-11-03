@@ -42,21 +42,23 @@ export default {
       scrollToBottom(this.fetchByTag);
     },
     async fetchByTag() {
-      try {
-        let morePassages = await psgAPI.fetchByTag(
-          this.tag,
-          this.page,
-          this.limit
-        );
-        this.page += 1;
-        if (morePassages.length === 0) {
-          document.removeEventListener("scroll", this.handleScroll, false);
-          return;
-        }
-        this.passages = this.passages.concat(morePassages);
-      } catch (error) {
-        document.removeEventListener("scroll", this.handleScroll, false);
-      }
+      return new Promise((resolve, reject) => {
+        psgAPI
+          .fetchByTag(this.tag, this.page, this.limit)
+          .then(res => {
+            this.page += 1;
+            if (res.length === 0) {
+              document.removeEventListener("scroll", this.handleScroll, false);
+              return resolve();
+            }
+            this.passages = this.passages.concat(res);
+            return resolve();
+          })
+          .catch(error => {
+            document.removeEventListener("scroll", this.handleScroll, false);
+            return reject(error);
+          });
+      });
     }
   }
 };

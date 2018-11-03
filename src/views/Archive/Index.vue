@@ -40,19 +40,23 @@ export default {
       scrollToBottom(this.fetchPassages);
     },
     fetchPassages() {
-      psgAPI
-        .fetchForTimeline(this.page, this.limit)
-        .then(res => {
-          this.page += 1;
-          if (res.length === 0) {
+      return new Promise((resolve, reject) => {
+        psgAPI
+          .fetchForTimeline(this.page, this.limit)
+          .then(res => {
+            this.page += 1;
+            if (res.length === 0) {
+              document.removeEventListener("scroll", this.handleScroll, false);
+              return resolve();
+            }
+            this.passages = this.passages.concat(res);
+            return resolve();
+          })
+          .catch(error => {
             document.removeEventListener("scroll", this.handleScroll, false);
-            return;
-          }
-          this.passages = this.passages.concat(res);
-        })
-        .catch(error =>
-          document.removeEventListener("scroll", this.handleScroll, false)
-        );
+            return reject(error);
+          });
+      });
     }
   }
 };

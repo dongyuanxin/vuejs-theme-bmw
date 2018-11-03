@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       page: 1,
-      limit: 20,
+      limit: 10,
       category: "",
       total: " ? ",
       passages: []
@@ -42,21 +42,23 @@ export default {
       scrollToBottom(this.fetchByCategory);
     },
     async fetchByCategory() {
-      try {
-        let morePassages = await psgAPI.fetchByCategory(
-          this.category,
-          this.page,
-          this.limit
-        );
-        this.page += 1;
-        if (morePassages.length === 0) {
-          document.removeEventListener("scroll", this.handleScroll, false);
-          return;
-        }
-        this.passages = this.passages.concat(morePassages);
-      } catch (error) {
-        document.removeEventListener("scroll", this.handleScroll, false);
-      }
+      return new Promise((resolve, reject) => {
+        psgAPI
+          .fetchByCategory(this.category, this.page, this.limit)
+          .then(res => {
+            this.page += 1;
+            if (res.length === 0) {
+              document.removeEventListener("scroll", this.handleScroll, false);
+              return resolve();
+            }
+            this.passages = this.passages.concat(res);
+            return resolve();
+          })
+          .catch(error => {
+            document.removeEventListener("scroll", this.handleScroll, false);
+            return reject(error);
+          });
+      });
     }
   }
 };
