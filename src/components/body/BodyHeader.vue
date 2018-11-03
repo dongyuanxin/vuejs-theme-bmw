@@ -8,11 +8,14 @@
       </div>
       <nav :class="{'site-navigation':true, 'active': showMobileNav}">
         <ul class="nav-menu">
-          <li class="nav-item" v-for="(link, index) in insiteNavigations" :key="index" 
+          <li 
+          v-for="(link, index) in insiteNavigations" :key="index" 
           @mouseenter="checkedItemIndex = index"
-          @mouseleave="checkedItemIndex = -1" >
+          @mouseleave="checkedItemIndex = -1" 
+          :class="{'nav-item': true, hover: link.routeName === routeName}"
+          >
             <router-link :to="link.path" v-if="link.children.length === 0">{{ link.name }}</router-link>
-            <a href="javascript:void(0);" v-else>{{link.name}}</a>
+            <a href="javascript:void(0);" v-else >{{link.name}}</a>
             <ul class="nav-menu--dropdown" :class="{active: checkedItemIndex === index}" v-if="link.children.length !== 0">
               <li v-for="(childrenLink, childrenIndex) in link.children" :key="childrenIndex">
                 <router-link :to="childrenLink.path" v-if="childrenLink.blank === false">{{ childrenLink.name }}</router-link>
@@ -33,9 +36,11 @@ export default {
     return {
       checkedItemIndex: -1,
       showMobileNav: false,
+      routeName: "",
       insiteNavigations: [
         {
           name: "主页",
+          routeName: "home",
           path: "/",
           blank: false,
           children: []
@@ -47,11 +52,13 @@ export default {
           children: [
             {
               name: "Webpack4 系列",
+              routeName: "category-detail",
               path: "/category/webpack4%20系列教程",
               blank: false
             },
             {
               name: "每天一个设计模式",
+              routeName: "category-detail",
               path: "/category/每天一个设计模式",
               blank: false
             }
@@ -59,30 +66,35 @@ export default {
         },
         {
           name: "归档",
+          routeName: "archive",
           path: "/archive",
           blank: false,
           children: []
         },
         {
           name: "分类",
+          routeName: "category",
           path: "/category",
           blank: false,
           children: []
         },
         {
           name: "标签",
+          routeName: "tag",
           path: "/tag",
           blank: false,
           children: []
         },
         {
           name: "友链",
+          routeName: "friend",
           path: "/friend",
           blank: false,
           children: []
         },
         {
           name: "关于",
+          routeName: "about",
           path: "/about",
           blank: false,
           children: []
@@ -167,10 +179,18 @@ export default {
       ]
     };
   },
+  mounted() {
+    try {
+      this.routeName = this.$route.name.split("-")[0];
+    } catch (error) {}
+  },
   watch: {
     $route(to, from) {
       this.checkedItemIndex = -1;
       this.showMobileNav = false;
+      try {
+        this.routeName = this.$route.name.split("-")[0];
+      } catch (error) {}
     }
   }
 };
@@ -260,6 +280,12 @@ header {
         &:hover {
           color: #222;
         }
+      }
+    }
+
+    li.nav-item.hover {
+      a {
+        color: #222;
       }
     }
   }
