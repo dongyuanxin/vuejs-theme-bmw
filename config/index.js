@@ -7,6 +7,7 @@ const path = require("path");
 const CDN = {
   assetsSubDirectory: "static",
   assetsPublicPath: "//blog-1255463368.file.myqcloud.com/"
+  // assetsPublicPath: "//qcloud.coding.net/u/godbmw/p/blog/git/raw/master/"
 };
 
 module.exports = {

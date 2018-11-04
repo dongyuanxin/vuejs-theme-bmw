@@ -43,9 +43,9 @@ export default {
     };
   },
   mounted() {
-    if (document.body.clientWidth >= 480) {
-      this.playMusic();
-    }
+    // if (document.body.clientWidth >= 480) {
+    //   this.playMusic();
+    // }
     let app = document.getElementById("app");
     document.addEventListener("scroll", this.throttle(), false);
   },

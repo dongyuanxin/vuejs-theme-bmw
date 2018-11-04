@@ -3,10 +3,9 @@ const k = "LCiHDPNp4dbaD$0hqINzWEPt$!pYy%IA";
 const cdn = {
   bgImgUrl: "/image/wallpaper", // 背景图片地址
   mdImgUrl:
-    process.env.NODE_ENV === "development"
-      ? "//raw.githubusercontent.com/dongyuanxin/markdown-static/master"
-      : "//blog-1255463368.file.myqcloud.com/markdown-static", // markdown图片地址
-  musicUrl: "//blog-1255463368.file.myqcloud.com/music"
+    "//qcloud.coding.net/u/godbmw/p/blog/git/raw/master/markdown-static", // markdown图片地址
+  musicUrl: "//qcloud.coding.net/u/godbmw/p/blog/git/raw/master/music",
+  friendUrl: "//qcloud.coding.net/u/godbmw/p/blog/git/raw/master/friend"
 };
 
 const server = {
