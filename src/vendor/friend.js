@@ -1,3 +1,5 @@
+import { cdn } from "@/vendor/setting";
+
 import Axios from "@/vendor/axios";
 const axiosApi = new Axios();
 
@@ -11,7 +13,11 @@ Friend.prototype.fetch = (page, step) => {
         step
       })
       .then(res => {
-        if (res.data.code === 0) resolve(res.data.results);
+        let results = res.data.results;
+        for (let i = 0; i < results.length; ++i) {
+          results[i].headImgUrl = cdn.friendUrl + "/" + results[i].headImgUrl;
+        }
+        if (res.data.code === 0) resolve(results);
         else reject(new Error(res.data.msg));
       })
       .catch(error => reject(error));
