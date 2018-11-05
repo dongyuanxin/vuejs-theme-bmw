@@ -4,12 +4,6 @@
 
 const path = require("path");
 
-const CDN = {
-  assetsSubDirectory: "static",
-  assetsPublicPath: "//blog-1255463368.file.myqcloud.com/"
-  // assetsPublicPath: "//qcloud.coding.net/u/godbmw/p/blog/git/raw/master/"
-};
-
 module.exports = {
   dev: {
     // Paths
@@ -46,8 +40,8 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, "../dist"),
-    assetsSubDirectory: CDN.assetsSubDirectory,
-    assetsPublicPath: CDN.assetsPublicPath,
+    assetsSubDirectory: 'static',
+    assetsPublicPath: '/',
 
     /**
      * Source Maps
