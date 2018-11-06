@@ -331,7 +331,7 @@ header {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   header {
     position: relative;
     .site-brand {
