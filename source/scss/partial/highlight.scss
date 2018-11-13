@@ -1,0 +1,24 @@
+$highlight-background : #2d2d2d;
+$highlight-current-line : #393939;
+$highlight-selection : #515151;
+$highlight-foreground : #cccccc;
+$highlight-comment : #999999;
+$highlight-red : #f2777a;
+$highlight-orange : #f99157;
+$highlight-yellow : #ffcc66;
+$highlight-green : #99cc99;
+$highlight-aqua : #66cccc;
+$highlight-blue : #6699cc;
+$highlight-purple : #cc99cc;
+
+%code-block {
+  background: $highlight-background;
+  margin: 0 $article-padding * -1;
+  padding: 15px article-padding
+  border-style: solid
+  border-color: color-border
+  border-width: 1px 0
+  overflow: auto
+  color: highlight-foreground
+  line-height: font-size * line-height
+}

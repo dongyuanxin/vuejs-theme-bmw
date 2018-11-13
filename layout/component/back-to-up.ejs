@@ -1,0 +1,65 @@
+<div class="back-to-top" :class="{hidden : hidenBtn}" @click="backToTop">
+  <span>
+    <i class="iconfont icon-60"></i>{{viewPercent}}%
+  </span>
+</div>
+
+<script>
+const handleScoll = () => {
+  let isRunning = false;
+  return () => {
+    if (isRunning) return;
+    isRunning = true;
+    window.requestAnimationFrame(timestamp => {
+      let scrollTop =
+          document.documentElement.scrollTop || document.body.scrollTop,
+        scrollHeight =
+          document.documentElement.scrollHeight ||
+          document.body.scrollHeight,
+        clientHeight =
+          document.documentElement.clientHeight ||
+          document.body.clientHeight;
+      isRunning = false;
+      if (scrollTop <= 1) {
+        this.viewPercent = 0;
+        return;
+      }
+      if (scrollTop + clientHeight >= scrollHeight) {
+        this.viewPercent = 100;
+      } else {
+        this.viewPercent = parseInt(
+          100 * scrollTop / (scrollHeight - clientHeight),
+          10
+        );
+      }
+    });
+  };
+}
+const backToTop = () => {
+  let scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop,
+    delay = 10,
+    time = 200;
+  if (scrollTop <= 20) {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    return;
+  }
+  let step = Math.ceil(scrollTop * delay / time);
+  this.timer = setInterval(() => {
+    scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop;
+    if (scrollTop - step <= 0) {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      clearInterval(this.timer);
+    } else {
+      document.documentElement.scrollTop = scrollTop - step;
+      document.body.scrollTop = scrollTop - step;
+    }
+  }, delay);
+}
+  let app = document.getElementById("app");
+  document.addEventListener("scroll", this.throttle(), false);
+
+</script>

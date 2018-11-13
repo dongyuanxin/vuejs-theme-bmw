@@ -1,0 +1,38 @@
+<footer>
+  <p class="site-info">
+    博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>
+    <br>
+    Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">董沅鑫</a>
+    <br>
+    <a href="https://www.google.com/analytics/" target="_blank">Google Analytics</a> 提供网站统计服务. 
+    <a href="https://cloud.tencent.com/" target="_blank">Tencent Cloud</a> 提供CDN服务. 
+    <a href="https://sg.godaddy.com/"  target="_blank">GoDaddy</a> 提供域名注册服务. 
+    <a href="https://www.dnspod.cn/" target="_blank">DNSPod</a> 提供DNS解析服务. 
+    <br>
+    由 <a href="https://vuejs.org/" target="_blank">VueJs</a> + <a href="https://koa.bootcss.com/" target="_blank">Koa2</a> + <a href="https://webpack.github.io/" target="_blank">Webpack</a> 强力驱动.
+    运行于 <a href="https://cloud.tencent.com/" target="_blank">Tencent Cloud</a> 云服务器. 
+    <a href="https://www.trustasia.com/" target="_blank">TrustAsia</a> 签发SSL证书. 
+    <a href="http://www.miibeian.gov.cn/state/outPortal/loginPortal.action" target="_blank">粤ICP备18028400号</a> .
+  </p>
+</footer>
+
+<script>
+const timeToNowDOM = document.querySelector("#time-to-now");
+const startTimestamp = new Date(2018, 2, 10, 23, 58).getTime();
+
+const updateTimeStr = () => {
+  let offset = parseInt(
+      (new Date().getTime() - startTimestamp) / 1000,
+      10
+    ),
+    day = Math.floor(offset / 86400),
+    hour = Math.floor((offset % 86400) / 3600),
+    minute = Math.floor(((offset % 86400) % 3600) / 60),
+    second = Math.floor(((offset % 86400) % 3600) % 60);
+  timeToNowDOM.innerHTML =
+    day + "天" + hour + "小时" + minute + "分钟" + second + "秒";
+  setTimeout(updateTimeStr, 500);
+}
+
+setTimeout(updateTimeStr, 500);
+</script>
